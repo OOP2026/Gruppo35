@@ -45,11 +45,11 @@ public class LayerContainmentTest {
 
     @ArchTest
     public static final ArchRule GUIs_reside_in_the_GUI_layer = classes()
-            .that().haveSimpleNameEndingWith("gui")
+            .that().haveSimpleNameEndingWith("src/java/gui")
             .should().resideInAPackage("project.gui");
 
     @ArchTest
     public static final ArchRule GUIs_only_reside_in_the_GUI_layer = noClasses()
-            .that().haveSimpleNameNotEndingWith("gui")
+            .that().haveSimpleNameNotEndingWith("src/java/gui")
             .should().resideInAPackage("project.gui");
 }

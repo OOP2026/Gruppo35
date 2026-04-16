@@ -1,4 +1,4 @@
-package project.implementazioneDao;
+package implementazioneDao;
 
 public class BorsaImplementazionePostgresDao {
 }

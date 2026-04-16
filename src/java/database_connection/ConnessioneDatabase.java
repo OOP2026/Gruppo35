@@ -1,4 +1,4 @@
-package project.database_connection;
+package database_connection;
 
 public class ConnessioneDatabase {
 

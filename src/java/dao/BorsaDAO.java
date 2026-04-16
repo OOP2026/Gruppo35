@@ -1,4 +1,4 @@
-package project.dao;
+package dao;
 
 public interface BorsaDAO {
 
