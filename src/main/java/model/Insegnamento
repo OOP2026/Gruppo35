@@ -1,0 +1,24 @@
+package model;
+
+public class Insegnamento {
+    private String nome;
+    private int CFU;
+    private String anno; // "I", "II" o "III"
+    private Docente docenteTitolare; // Relazione 1 a 1 dal lato Insegnamento
+
+    public Insegnamento(String nome, int cfu, String anno, Docente docenteTitolare) {
+        this.nome = nome;
+        this.CFU = cfu;
+        this.anno = anno;
+        this.docenteTitolare = docenteTitolare;
+    }
+
+    public String getNome() {
+        return nome; }
+    public int getCfu() {
+        return CFU; }
+    public String getAnno() {
+        return anno; }
+    public Docente getDocenteTitolare() {
+        return docenteTitolare; }
+}
