@@ -1,0 +1,29 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Docente extends Utente {
+    //il docente ha la possibilità di indicare max 3 vincoli
+    private List<VincoloDocente> vincoli;
+
+    //costruttore
+    public Docente(String nome, String cognome, String email, String password) {
+        super(nome, cognome, email, password); //chiamata costruttore utente
+        this.vincoli = new ArrayList<>();
+    }
+
+    //get
+    public List<VincoloDocente> getVincoli() {
+        return vincoli;
+    }
+
+    //"set"
+    public void aggiungiVincolo(VincoloDocente v) {
+        if (this.vincoli.size() < 3) {
+            this.vincoli.add(v);
+        } else {
+            System.out.println("Limite massimo di 3 vincoli raggiunto.");
+        }
+    }
+}
