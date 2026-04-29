@@ -1,0 +1,30 @@
+package model;
+
+import java.time.LocalTime;
+
+public class Lezione {
+    private String giorno;
+    private LocalTime oraInizio;
+    private LocalTime oraFine;
+    private Insegnamento insegnamento; // Associazione "Comprendere"
+    private Aula aula; // Associazione "Ospitare"
+
+    public Lezione(String giorno, LocalTime oraInizio, LocalTime oraFine, Insegnamento insegnamento, Aula aula) {
+        this.giorno = giorno;
+        this.oraInizio = oraInizio;
+        this.oraFine = oraFine;
+        this.insegnamento = insegnamento;
+        this.aula = aula;
+    }
+
+    public String getGiorno() {
+        return giorno; }
+    public LocalTime getOraInizio() {
+        return oraInizio; }
+    public LocalTime getOraFine() {
+        return oraFine; }
+    public Insegnamento getInsegnamento() {
+        return insegnamento; }
+    public Aula getAula() {
+        return aula; }
+}
