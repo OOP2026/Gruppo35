@@ -1,0 +1,62 @@
+package model;
+import java.time.LocalTime;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("-AVVIO PROVA SISTEMA-\n");
+
+        //prova gerarchia utenti
+        DocenteResponsabile profResponsabile = new DocenteResponsabile("Alessandro", "Mormone", "a.mormone@gmail.com", "1926");
+        Docente profBase = new Docente("Claudio", "Mona", "c.mona@gmail.com", "1927");
+        Studente studente = new Studente("Alfredo", "Lucco", "a.lucco@studenti.com", "1928", "DE1000000", "I");
+
+        System.out.println("Utenti creati: " + profResponsabile.getNome() + " (Responsabile), " + profBase.getNome() + " (Docente), " + studente.getNome() + " (Studente)");
+
+        //prova definizione di aula e insegnamento
+        Aula aulaA1 = new Aula("Aula A1");
+
+        //assegnamento di enrico fermi all'insegnamento fisica
+        Insegnamento poo = new Insegnamento("Programmazione Ad Oggetti", 9, "I", profBase);
+
+        System.out.println("Aule e insegnamenti creati: " + aulaA1.getNome() + " e insegnamento '" + poo.getNome() + "'");
+
+        //prova dei vincoli del docente
+        System.out.println("\n-VERIFICA VINCOLI-");
+        profBase.aggiungiVincolo(new VincoloDocente("Lunedì", LocalTime.of(8, 0), LocalTime.of(10, 0)));
+        profBase.aggiungiVincolo(new VincoloDocente("Mercoledì", LocalTime.of(14, 0), LocalTime.of(16, 0)));
+        profBase.aggiungiVincolo(new VincoloDocente("Venerdì", LocalTime.of(10, 0), LocalTime.of(12, 0)));
+
+        //prova del messaggio di errore della classe vincolo docente
+        profBase.aggiungiVincolo(new VincoloDocente("Giovedì", LocalTime.of(9, 0), LocalTime.of(11, 0)));
+
+        //prova creazione lezione
+        Lezione lez1 = new Lezione("Lunedì", LocalTime.of(11, 0), LocalTime.of(13, 0), poo, aulaA1);
+
+        System.out.println("\n-VERIFICA CALENDARIO-");
+        System.out.println("Lezione programmata: " + lez1.getInsegnamento().getNome());
+        System.out.println("Aula assegnata: " + lez1.getAula().getNome());
+        System.out.println("Docente titolare: " + lez1.getInsegnamento().getDocenteTitolare().getCognome());
+
+        //prova richiesta spopstamento
+        RichiestaSpostamento richiesta = new RichiestaSpostamento(lez1, "Giovedì", LocalTime.of(10, 0), LocalTime.of(12, 0));
+
+        System.out.println("\n-VERIFICA RICHIESTE-");
+        System.out.println("Nuova richiesta creata per la lezione di: " + richiesta.getLezioneRiferita().getInsegnamento().getNome());
+        System.out.println("Stato iniziale richiesta: " + richiesta.getStato());//dovrebbe risultare in attesa
+
+        //prova accettazione da parte del responsabile
+        richiesta.setStato(StatoRichiesta.APPROVATA);
+        System.out.println("Stato dopo approvazione del Responsabile: " + richiesta.getStato());
+
+        //prova verifica conflitti
+        System.out.println("\n-VERIFICA CONFLITTI-");
+        LocalTime inizioEsistente = lez1.getOraInizio(); //lez1 alle 11:00
+        LocalTime inizioNuova = LocalTime.of(12, 0); //lez2 alle 12:00 (non dovrebbe andare)
+
+        if (inizioNuova.isBefore(lez1.getOraFine())) {
+            System.out.println("Conflitto rilevato: La nuova lezione inizia prima che finisca quella precedente nell' " + aulaA1.getNome());
+        }
+
+        System.out.println("\n-TEST COMPLETATO-");
+    }
+}
