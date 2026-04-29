@@ -6,8 +6,8 @@ public class Lezione {
     private String giorno;
     private LocalTime oraInizio;
     private LocalTime oraFine;
-    private Insegnamento insegnamento; // Associazione "Comprendere"
-    private Aula aula; // Associazione "Ospitare"
+    private Insegnamento insegnamento; //legame con l'associazione comprendere
+    private Aula aula; //legame con l'associazione ospitare
 
     public Lezione(String giorno, LocalTime oraInizio, LocalTime oraFine, Insegnamento insegnamento, Aula aula) {
         this.giorno = giorno;
