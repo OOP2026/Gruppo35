@@ -1,0 +1,36 @@
+package model;
+
+import java.time.LocalTime;
+
+public class RichiestaSpostamento {
+    private Lezione lezioneRiferita;//lezione originale
+    private String giornoP;//giorno proposto
+    private LocalTime oraInizioP;//ora di inizio proposta
+    private LocalTime oraFineP;//ora di fine proposta
+    private StatoRichiesta stato;
+
+    public RichiestaSpostamento(Lezione lezioneRiferita, String giornoP, LocalTime oraInizioP, LocalTime oraFineP) {
+        this.lezioneRiferita = lezioneRiferita;
+        this.giornoP = giornoP;
+        this.oraInizioP = oraInizioP;
+        this.oraFineP = oraFineP;
+        this.stato = StatoRichiesta.IN_ATTESA;//ogni richiesta all'inizio rimane nello stato di attesa
+    }
+
+    public Lezione getLezioneRiferita() {
+        return lezioneRiferita; }
+
+    public StatoRichiesta getStato() {
+        return stato; }
+    public void setStato(StatoRichiesta stato) {
+        this.stato = stato; }
+
+    public String getGiornoP() {
+        return giornoP; }
+    
+    public LocalTime getOraInizioP() {
+        return oraInizioP; }
+    
+    public LocalTime getOraFineP() {
+        return oraFineP; }
+}
