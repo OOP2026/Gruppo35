@@ -15,7 +15,7 @@ public class Main {
         //prova definizione di aula e insegnamento
         Aula aulaA1 = new Aula("Aula A1");
 
-        //assegnamento di enrico fermi all'insegnamento fisica
+        //assegnamento insegnamento fisica
         Insegnamento poo = new Insegnamento("Programmazione Ad Oggetti", 9, "I", profBase);
 
         System.out.println("Aule e insegnamenti creati: " + aulaA1.getNome() + " e insegnamento '" + poo.getNome() + "'");
