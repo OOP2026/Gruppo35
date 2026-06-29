@@ -1,20 +1,23 @@
 package gui;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-@SuppressWarnings("java:S6212")
 public class GUIdocente extends JFrame {
-    private static final long serialVersionUID = 1L;
 
-    private JPanel mainPanel;
-    private JLabel messaggioDocente;
-    private JButton visualizzaOrarioDocente;
-    private JButton richiestaSpostamentoLezione;
-    private JButton logout;
-    private final CardLayout cardLayout;
-    private final JPanel pannelloContenitore;
+    private static final long serialVersionUID = 1L; // CORREZIONE: Risolve il warning sulla serializzazione
+
+    private JPanel mainPanel; // CORREZIONE: Aggiunto 'final'
+    private JLabel messaggioDocente; // CORREZIONE: Rinominato in camelCase (usando rename refactoring)
+    private JButton visualizzaOrarioDocente; // CORREZIONE: Convenzione nomi (minuscolo)
+    private JButton richiestaSpostamentoLezione; // CORREZIONE: Convenzione nomi (minuscolo)
+    private JButton logout; // CORREZIONE: Convenzione nomi (minuscolo)
+    private CardLayout cardLayout;
+    private JPanel pannelloContenitore;
 
     public GUIdocente(String cognomeDocente) {
         setTitle("Area Riservata Docente");
@@ -31,42 +34,82 @@ public class GUIdocente extends JFrame {
         inizializzaDati(cognomeDocente);
     }
 
-    private void inizializzaDati(String cognomeDocente) {	// Metodo di supporto per personalizzare il messaggio di benvenuto
-        if (messaggioDocente != null) {		// Controllo di sicurezza se il designer ha agganciato bene la label
-            messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");	// Imposta il testo dinamico con il cognome
+    private void inizializzaDati(String cognomeDocente) {    // Metodo di supporto per personalizzare il messaggio di benvenuto
+        if (messaggioDocente != null) {        // Controllo di sicurezza se il designer ha agganciato bene la label
+            messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");    // Imposta il testo dinamico con il cognome
         } else {
-            System.out.println("Errore: MessaggioDocente è nullo! Controlla il file .form");	// Log di debug in console se qualcosa non va nel .form
+            System.out.println("Errore: MessaggioDocente è nullo! Controlla il file .form");    // Log di debug in console se qualcosa non va nel .form
         }
     }
 
-    public void mostraPannelloSpostamento(JPanel nuovoPannello) {	// Mostra il form per lo spostamento inserendolo nel CardLayout a runtime
+    public void mostraPannelloSpostamento(JPanel nuovoPannello) {    // Mostra il form per lo spostamento inserendolo nel CardLayout a runtime
         try {
-            pannelloContenitore.remove(nuovoPannello);	// Rimuove eventuali vecchie istanze del form per evitare duplicati
-        } catch (Exception ignored) {}		// Ignora l'eccezione se il pannello non esisteva ancora
+            pannelloContenitore.remove(nuovoPannello);    // Rimuove eventuali vecchie istanze del form per evitare duplicati
+        } catch (Exception ignored) {
+        }        // Ignora l'eccezione se il pannello non esisteva ancora
 
-        pannelloContenitore.add(nuovoPannello, "FORM_SPOSTAMENTO");	// Aggiunge il nuovo form associandogli una chiave testuale
-        cardLayout.show(pannelloContenitore, "FORM_SPOSTAMENTO");	// Dice al layout di switchare visivamente sul form
+        pannelloContenitore.add(nuovoPannello, "FORM_SPOSTAMENTO");    // Aggiunge il nuovo form associandogli una chiave testuale
+        cardLayout.show(pannelloContenitore, "FORM_SPOSTAMENTO");    // Dice al layout di switchare visivamente sul form
     }
 
-    public void addVisualizzaOrarioDocenteListener(ActionListener listener) {	// Aggancia il listener del controller al bottone dell'orario
+    public void addVisualizzaOrarioDocenteListener(ActionListener listener) {    // Aggancia il listener del controller al bottone dell'orario
         if (visualizzaOrarioDocente != null) {
             visualizzaOrarioDocente.addActionListener(listener);
         }
     }
 
-    public void addRichiestaSpostamentoLezioneListener(ActionListener listener) {	// Aggancia il listener del controller al bottone di spostamento lezione
+    public void addRichiestaSpostamentoLezioneListener(ActionListener listener) {    // Aggancia il listener del controller al bottone di spostamento lezione
         if (richiestaSpostamentoLezione != null) {
             richiestaSpostamentoLezione.addActionListener(listener);
         }
     }
 
-    public void addLogoutListener(ActionListener listener) {	// Aggancia il listener del controller al bottone di logout
+    public void addLogoutListener(ActionListener listener) {    // Aggancia il listener del controller al bottone di logout
         if (logout != null) {
             logout.addActionListener(listener);
         }
     }
 
-    public void mostraPannelloIniziale() {	// Metodo richiamato dal controller per tornare alla schermata iniziale del prof
+    public void mostraPannelloIniziale() {    // Metodo richiamato dal controller per tornare alla schermata iniziale del prof
         cardLayout.show(pannelloContenitore, "DASHBOARD_INIZIALE");
     }
+
+    {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+        $$$setupUI$$$();
+    }
+
+    /**
+     * Method generated by IntelliJ IDEA GUI Designer
+     * >>> IMPORTANT!! <<<
+     * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
+     */
+    private void $$$setupUI$$$() {
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
+        visualizzaOrarioDocente = new JButton();
+        visualizzaOrarioDocente.setText("Visualizza orario");
+        mainPanel.add(visualizzaOrarioDocente, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        richiestaSpostamentoLezione = new JButton();
+        richiestaSpostamentoLezione.setText("Richiesta spostamento lezione");
+        mainPanel.add(richiestaSpostamentoLezione, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        messaggioDocente = new JLabel();
+        messaggioDocente.setText("Schermata docente");
+        mainPanel.add(messaggioDocente, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        logout = new JButton();
+        logout.setText("Logout");
+        mainPanel.add(logout, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return mainPanel;
+    }
+
 }

@@ -1,63 +1,143 @@
 package gui;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class GUIhome extends JFrame {		// Finestra principale di ingresso (punto di partenza)
-    private JPanel panel1;			// Pannello radice che contiene l'intera interfaccia
-    private JPanel mainPanel;			// Pannello centrale configurato con CardLayout per switchare le schermate
-    private JPanel panelBottoni;		// Pannello della schermata iniziale con la scelta del ruolo
-    private JPanel panelLogin;			// Pannello con i campi di testo per l'autenticazione
-    private JLabel Home;			// Etichetta del titolo principale del portale
-    private JButton Docente;			// Bottone per selezionare l'accesso come docente normale
-    private JButton Studente;			// Bottone per selezionare l'accesso come studente
-    private JTextField Email;			// Campo di testo per l'inserimento dell'email utente
-    private JTextField password;		// Campo di testo per l'inserimento della password
-    private JButton Accedi;			// Bottone per confermare l'invio dei dati di login
-    private JButton Indietro;			// Bottone per annullare il login e tornare alla scelta del ruolo
-    private JButton DocenteResponsabile;	// Bottone per selezionare l'accesso come coordinatore/responsabile
-    private JTextField CodiceResponsabile;	// Campo di testo aggiuntivo per il codice di sicurezza del responsabile
+public class GUIhome extends JFrame {        // Finestra principale di ingresso (punto di partenza)
+    private JPanel panel1;            // Pannello radice che contiene l'intera interfaccia
+    private JPanel mainPanel;            // Pannello centrale configurato con CardLayout per switchare le schermate
+    private JPanel panelBottoni;        // Pannello della schermata iniziale con la scelta del ruolo
+    private JPanel panelLogin;            // Pannello con i campi di testo per l'autenticazione
+    private JLabel Home;            // Etichetta del titolo principale del portale
+    private JButton Docente;            // Bottone per selezionare l'accesso come docente normale
+    private JButton Studente;            // Bottone per selezionare l'accesso come studente
+    private JTextField Email;            // Campo di testo per l'inserimento dell'email utente
+    private JTextField password;        // Campo di testo per l'inserimento della password
+    private JButton Accedi;            // Bottone per confermare l'invio dei dati di login
+    private JButton Indietro;            // Bottone per annullare il login e tornare alla scelta del ruolo
+    private JButton DocenteResponsabile;    // Bottone per selezionare l'accesso come coordinatore/responsabile
+    private JTextField CodiceResponsabile;    // Campo di testo aggiuntivo per il codice di sicurezza del responsabile
 
-    public GUIhome() {				// Costruttore: configura le proprietà di base della finestra iniziale
-        setTitle("Portale Universitario");	// Imposta il titolo sulla barra superiore della finestra
-        setContentPane(panel1);			// Associa il pannello principale alla finestra
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// Chiude l'applicazione quando si preme la x della finestra
-        setSize(450, 350);			// Imposta le dimensioni della finestra di login
-        setLocationRelativeTo(null);		// Centra la finestra sullo schermo dell'utente
+    public GUIhome() {                // Costruttore: configura le proprietà di base della finestra iniziale
+        setTitle("Portale Universitario");    // Imposta il titolo sulla barra superiore della finestra
+        setContentPane(panel1); // Associa il pannello principale alla finestra
+        mainPanel.add(panelLogin, "SCHERMATA_LOGIN");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Chiude l'applicazione quando si preme la x della finestra
+        setSize(450, 350);            // Imposta le dimensioni della finestra di login
+        setLocationRelativeTo(null);        // Centra la finestra sullo schermo dell'utente
     }
 
-    public void mostraSchermata(String nomeCard) {	// Metodo per cambiare schermata
-        CardLayout cl = (CardLayout) mainPanel.getLayout();	// Recupera il gestore CardLayout dal pannello centrale
-        cl.show(mainPanel, nomeCard);		// Mostra la schermata corrispondente al nome passato come parametro
-        mainPanel.revalidate();			// Ricalcola il layout per evitare glitch grafici dopo lo switch
-        mainPanel.repaint();			// Rinfresca visivamente i componenti grafici del pannello
+    public void mostraSchermata(String nomeCard) {    // Metodo per cambiare schermata
+        CardLayout cl = (CardLayout) mainPanel.getLayout();    // Recupera il gestore CardLayout dal pannello centrale
+        cl.show(mainPanel, nomeCard);        // Mostra la schermata corrispondente al nome passato come parametro
+        mainPanel.revalidate();            // Ricalcola il layout per evitare glitch grafici dopo lo switch
+        mainPanel.repaint();            // Rinfresca visivamente i componenti grafici del pannello
     }
 
-    public void addDocenteListener(ActionListener l) {	// Aggancia il listener del controller al bottone Docente
-        Docente.addActionListener(l); }
-    public void addStudenteListener(ActionListener l) {	// Aggancia il listener del controller al bottone Studente
-        Studente.addActionListener(l); }
-    public void addAccediListener(ActionListener listener) {	// Aggancia il listener al bottone Accedi per verificare le credenziali
+    public void addDocenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone Docente
+        Docente.addActionListener(l);
+    }
+
+    public void addStudenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone Studente
+        Studente.addActionListener(l);
+    }
+
+    public void addAccediListener(ActionListener listener) {    // Aggancia il listener al bottone Accedi per verificare le credenziali
         Accedi.addActionListener(listener);
     }
-    public void addIndietroListener(ActionListener listener) {	// Aggancia il listener al bottone Indietro per tornare alla home
+
+    public void addIndietroListener(ActionListener listener) {    // Aggancia il listener al bottone Indietro per tornare alla home
         Indietro.addActionListener(listener);
     }
-    public void addDocenteResponsabileListener(ActionListener listener) {	// Aggancia il listener al bottone del Docente Responsabile
+
+    public void addDocenteResponsabileListener(ActionListener listener) {    // Aggancia il listener al bottone del Docente Responsabile
         DocenteResponsabile.addActionListener(listener);
     }
-    public String getCodiceInput() {		// Restituisce il codice inserito dal responsabile eliminando spazi vuoti
+
+    public String getCodiceInput() {        // Restituisce il codice inserito dal responsabile eliminando spazi vuoti
         return CodiceResponsabile.getText().trim();
     }
-    public void impostaVisibilitaCodice(boolean visibile) {	// Mostra o nasconde il campo codice a seconda del ruolo selezionato
-        CodiceResponsabile.setVisible(visibile);	// Cambia lo stato di visibilità del componente
-        CodiceResponsabile.revalidate();	// Aggiorna la struttura del layout dopo il cambio di visibilità
-        CodiceResponsabile.repaint();		// Ridisegna il componente a schermo
+
+    public void impostaVisibilitaCodice(boolean visibile) {    // Mostra o nasconde il campo codice a seconda del ruolo selezionato
+        CodiceResponsabile.setVisible(visibile);    // Cambia lo stato di visibilità del componente
+        CodiceResponsabile.revalidate();    // Aggiorna la struttura del layout dopo il cambio di visibilità
+        CodiceResponsabile.repaint();        // Ridisegna il componente a schermo
     }
-    public String getEmailInput() {		// Restituisce il testo digitato nel campo Email
-        return Email.getText(); }
-    public String getPasswordInput() {		// Restituisce il testo digitato nel campo Password
+
+    public String getEmailInput() {        // Restituisce il testo digitato nel campo Email
+        return Email.getText();
+    }
+
+    public String getPasswordInput() {        // Restituisce il testo digitato nel campo Password
         return password.getText();
     }
+
+    {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+        $$$setupUI$$$();
+    }
+
+    /**
+     * Method generated by IntelliJ IDEA GUI Designer
+     * >>> IMPORTANT!! <<<
+     * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
+     */
+    private void $$$setupUI$$$() {
+        panel1 = new JPanel();
+        panel1.setLayout(new CardLayout(0, 0));
+        panel1.setBorder(BorderFactory.createTitledBorder(null, "", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new CardLayout(0, 0));
+        panel1.add(mainPanel, "Card1");
+        panelBottoni = new JPanel();
+        panelBottoni.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(panelBottoni, "SchermataBottoni");
+        Docente = new JButton();
+        Docente.setText("login docente");
+        panelBottoni.add(Docente, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Studente = new JButton();
+        Studente.setText("login studente");
+        panelBottoni.add(Studente, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Home = new JLabel();
+        Home.setText("HOME");
+        panelBottoni.add(Home, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        DocenteResponsabile = new JButton();
+        DocenteResponsabile.setText("login docente responsabile");
+        panelBottoni.add(DocenteResponsabile, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panelLogin = new JPanel();
+        panelLogin.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(panelLogin, "SchermataLogin");
+        Email = new JTextField();
+        Email.setText("Email");
+        panelLogin.add(Email, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        Accedi = new JButton();
+        Accedi.setText("Accedi");
+        panelLogin.add(Accedi, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        password = new JTextField();
+        password.setText("Password");
+        panelLogin.add(password, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        Indietro = new JButton();
+        Indietro.setText("Indietro");
+        panelLogin.add(Indietro, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        CodiceResponsabile = new JTextField();
+        CodiceResponsabile.setText("Codice");
+        panelLogin.add(CodiceResponsabile, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return panel1;
+    }
+
 }
