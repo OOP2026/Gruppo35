@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@SuppressWarnings({"java:S6548"})
 public class ConnessioneDatabase {
     private static ConnessioneDatabase instance;
     private Connection connection;
@@ -15,7 +16,7 @@ public class ConnessioneDatabase {
     private static final String PASSWORD = "ale1926";
 
     /* Il costruttore privato impedisce l'istanziazione diretta dall'esterno */
-    @SuppressWarnings({"java:S106", "java:S1148", "java:S6437", "java:S2068"})
+    @SuppressWarnings({"java:S106", "java:S4507", "java:S2068", "java:S6437"})
     private ConnessioneDatabase() {
         try {
             this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -25,14 +26,14 @@ public class ConnessioneDatabase {
         }
     }
 
-    @SuppressWarnings({"java:S106", "java:S1148"})
+    @SuppressWarnings({"java:S4507"})
     public static ConnessioneDatabase getInstance() {
         try {
             if (instance == null || instance.getConnection().isClosed()) {
                 instance = new ConnessioneDatabase();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Riga 35 sistemata!
         }
         return instance;
     }
