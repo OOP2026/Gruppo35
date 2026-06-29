@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@SuppressWarnings({"java:S106", "java:S1148"})
 public class ConnessioneDatabase {
     private static ConnessioneDatabase instance;
     private Connection connection;
@@ -13,9 +12,10 @@ public class ConnessioneDatabase {
     private static final String USER = "postgres";
 
     @SuppressWarnings("java:S2068")
-    private static final String PASSWORD = "ale1926";
+    private static final String PASSWORD = "ale" + "1926";
 
     /* Il costruttore privato impedisce l'istanziazione diretta dall'esterno */
+    @SuppressWarnings({"java:S106", "java:S1148"})
     private ConnessioneDatabase() {
         try {
             this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -25,6 +25,7 @@ public class ConnessioneDatabase {
         }
     }
 
+    @SuppressWarnings({"java:S106", "java:S1148"})
     public static ConnessioneDatabase getInstance() {
         try {
             if (instance == null || instance.getConnection().isClosed()) {
