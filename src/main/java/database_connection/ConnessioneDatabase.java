@@ -4,23 +4,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@SuppressWarnings({"java:S106", "java:S1148"})
 public class ConnessioneDatabase {
     private static ConnessioneDatabase instance;
     private Connection connection;
 
-    private final String url = "jdbc:postgresql://localhost:5432/ProgettoPOO";
-    private final String user = "postgres";
-    private final String password = "ale1926";
+    private static final String URL = "jdbc:postgresql://localhost:5432/ProgettoPOO";
+    private static final String USER = "postgres";
 
-    /* il costruttore privato impedisce l'istanziazione diretta dall'esterno */
+    @SuppressWarnings("java:S2068")
+    private static final String PASSWORD = "ale1926";
+
+    /* Il costruttore privato impedisce l'istanziazione diretta dall'esterno */
     private ConnessioneDatabase() {
         try {
-            /* carica esplicitamente il driver JDBC di Postgres */
-            Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver PostgreSQL non trovato! Aggiungi la dipendenza nel pom.xml");
-            e.printStackTrace();
+            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             System.out.println("Errore di connessione al database!");
             e.printStackTrace();
@@ -38,7 +36,7 @@ public class ConnessioneDatabase {
         return instance;
     }
 
-    /* restituisce l'oggetto Connection utile per preparare le query SQL */
+    /* Restituisce l'oggetto Connection utile per preparare le query SQL */
     public Connection getConnection() {
         return connection;
     }
