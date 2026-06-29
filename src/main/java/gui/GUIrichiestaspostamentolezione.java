@@ -1,5 +1,7 @@
 package gui;
 
+import com.intellij.uiDesigner.core.GridLayoutManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -69,7 +71,7 @@ public class GUIrichiestaspostamentolezione extends JPanel {    // Pannello inte
      */
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
-        mainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
     }
 
     /**
@@ -78,4 +80,5 @@ public class GUIrichiestaspostamentolezione extends JPanel {    // Pannello inte
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }
