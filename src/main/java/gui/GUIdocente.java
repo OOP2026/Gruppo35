@@ -4,32 +4,36 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class GUIdocente extends JFrame {	// Finestra principale per l'interfaccia del docente
-    private JPanel mainPanel;			// Pannello principale collegato al file .form
-    private JLabel MessaggioDocente;		// Etichetta per il testo di benvenuto al prof
-    private JButton VisualizzaOrarioDocente;	// Bottone per consultare l'orario delle lezioni
-    private JButton RichiestaSpostamentoLezione;	// Bottone per aprire il modulo di spostamento lezione
-    private JButton Logout;			// Bottone per disconnettersi e tornare alla home
-    private final CardLayout cardLayout;		// Layout manager per switchare tra la home del docente e i sotto-pannelli
-    private final JPanel pannelloContenitore;		// Pannello contenitore per lo switch
+@SuppressWarnings("java:S6212")
+public class GUIdocente extends JFrame {
+    private static final long serialVersionUID = 1L;
 
-    public GUIdocente(String cognomeDocente) {	// Costruttore della gui: riceve il cognome del docente loggato
-        setTitle("Area Riservata Docente");	// Imposta il titolo in alto sulla finestra
+    private JPanel mainPanel;
+    private JLabel messaggioDocente;
+    private JButton visualizzaOrarioDocente;
+    private JButton richiestaSpostamentoLezione;
+    private JButton logout;
+    private final CardLayout cardLayout;
+    private final JPanel pannelloContenitore;
 
-        cardLayout = new CardLayout();		// Inizializza il CardLayout per la gestione delle schermate
-        pannelloContenitore = new JPanel(cardLayout);	// Crea il pannello che userà il CardLayout
-        pannelloContenitore.add(mainPanel, "DASHBOARD_INIZIALE");	// Carica il pannello del designer come schermata iniziale
-        setContentPane(pannelloContenitore);	// Imposta il contenitore appena creato come pannello principale della finestra
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// Chiude definitivamente il processo java quando si clicca sulla x
-        setSize(500, 400);			// Dimensioni di base della finestra
-        setLocationRelativeTo(null);		// Centra la finestra sullo schermo all'avvio
+    public GUIdocente(String cognomeDocente) {
+        setTitle("Area Riservata Docente");
 
-        inizializzaDati(cognomeDocente);	// Riempie la label con il cognome passato dal login
+        cardLayout = new CardLayout();
+        pannelloContenitore = new JPanel(cardLayout);
+
+        pannelloContenitore.add(mainPanel, "DASHBOARD_INIZIALE");
+        setContentPane(pannelloContenitore);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(500, 400);
+        setLocationRelativeTo(null);
+
+        inizializzaDati(cognomeDocente);
     }
 
     private void inizializzaDati(String cognomeDocente) {	// Metodo di supporto per personalizzare il messaggio di benvenuto
-        if (MessaggioDocente != null) {		// Controllo di sicurezza se il designer ha agganciato bene la label
-            MessaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");	// Imposta il testo dinamico con il cognome
+        if (messaggioDocente != null) {		// Controllo di sicurezza se il designer ha agganciato bene la label
+            messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");	// Imposta il testo dinamico con il cognome
         } else {
             System.out.println("Errore: MessaggioDocente è nullo! Controlla il file .form");	// Log di debug in console se qualcosa non va nel .form
         }
@@ -45,20 +49,20 @@ public class GUIdocente extends JFrame {	// Finestra principale per l'interfacci
     }
 
     public void addVisualizzaOrarioDocenteListener(ActionListener listener) {	// Aggancia il listener del controller al bottone dell'orario
-        if (VisualizzaOrarioDocente != null) {
-            VisualizzaOrarioDocente.addActionListener(listener);
+        if (visualizzaOrarioDocente != null) {
+            visualizzaOrarioDocente.addActionListener(listener);
         }
     }
 
     public void addRichiestaSpostamentoLezioneListener(ActionListener listener) {	// Aggancia il listener del controller al bottone di spostamento lezione
-        if (RichiestaSpostamentoLezione != null) {
-            RichiestaSpostamentoLezione.addActionListener(listener);
+        if (richiestaSpostamentoLezione != null) {
+            richiestaSpostamentoLezione.addActionListener(listener);
         }
     }
 
     public void addLogoutListener(ActionListener listener) {	// Aggancia il listener del controller al bottone di logout
-        if (Logout != null) {
-            Logout.addActionListener(listener);
+        if (logout != null) {
+            logout.addActionListener(listener);
         }
     }
 

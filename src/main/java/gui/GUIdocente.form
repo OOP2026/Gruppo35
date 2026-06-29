@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="675cb" class="javax.swing.JButton" binding="VisualizzaOrarioDocente">
+      <component id="675cb" class="javax.swing.JButton" binding="visualizzaOrarioDocente">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -16,7 +16,7 @@
           <text value="Visualizza orario"/>
         </properties>
       </component>
-      <component id="6b828" class="javax.swing.JButton" binding="RichiestaSpostamentoLezione">
+      <component id="6b828" class="javax.swing.JButton" binding="richiestaSpostamentoLezione">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -24,7 +24,7 @@
           <text value="Richiesta spostamento lezione"/>
         </properties>
       </component>
-      <component id="22141" class="javax.swing.JLabel" binding="MessaggioDocente">
+      <component id="22141" class="javax.swing.JLabel" binding="messaggioDocente">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -32,7 +32,7 @@
           <text value="Schermata docente"/>
         </properties>
       </component>
-      <component id="3db9f" class="javax.swing.JButton" binding="Logout">
+      <component id="3db9f" class="javax.swing.JButton" binding="logout">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
