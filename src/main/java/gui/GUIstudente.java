@@ -1,0 +1,37 @@
+package gui;
+
+import javax.swing.*;
+import java.awt.event.ActionListener;
+
+public class GUIstudente extends JFrame {	// Finestra principale per la dashboard dell'utente studente
+    private JPanel mainPanel;			// Pannello radice collegato alla grafica del file .form
+    private JLabel Messaggio;			// Etichetta di testo per salutare lo studente loggato
+    private JButton VisualizzaOrario;		// Bottone per accedere alla visualizzazione dell'orario lezioni
+    private JButton Indietro;			// Bottone per disconnettersi e ritornare alla pagina di login
+
+    public GUIstudente(String nomeStudente) {	// Costruttore: riceve il nome dello studente per personalizzare la view
+        setTitle("Area Riservata Studente");	// Imposta la scritta sulla barra in alto della finestra
+        setContentPane(mainPanel);		// Associa il pannello del designer come contenuto della finestra
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// Spegne il processo java alla chiusura della finestra con la x
+        setSize(500, 400);			// Definisce la risoluzione in pixel della schermata dello studente
+        setLocationRelativeTo(null);		// Fa comparire la finestra esattamente al centro dello schermo
+
+        Messaggio.setText("Benvenuto nella tua area riservata, " + nomeStudente + "!");	// Scrive il testo di benvenuto dinamico
+    }
+
+    public void addVisualizzaOrarioListener(ActionListener listener) {	// Collega l'azione del controller al tasto dell'orario
+        if (VisualizzaOrario != null) {
+            VisualizzaOrario.addActionListener(listener);
+        } else {
+            System.out.println("Errore: VisualizzaOrario è null!");	// Log di avviso se il bottone non è configurato nel .form
+        }
+    }
+
+    public void addIndietroListener(ActionListener listener) {	// Collega l'azione del controller al tasto indietro per il logout
+        if (Indietro != null) {
+            Indietro.addActionListener(listener);
+        } else {
+            System.out.println("Errore: Indietro è null nel codice dello Studente!");	// Log di controllo per verificare il name field nel designer
+        }
+    }
+}

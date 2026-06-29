@@ -12,7 +12,7 @@ public class VincoloDocente {
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
     }
-    
+
     public String getGiorno() {
         return giorno; }
     public void setGiorno(String giorno) {

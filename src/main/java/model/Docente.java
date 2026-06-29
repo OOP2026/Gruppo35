@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Docente extends Utente {
     //il docente ha la possibilità di indicare max 3 vincoli
-    private List<VincoloDocente> vincoli;
+    private final List<VincoloDocente> vincoli;
 
     //costruttore
     public Docente(String nome, String cognome, String email, String password) {

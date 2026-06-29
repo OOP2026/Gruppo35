@@ -1,10 +1,10 @@
 package model;
 
 public class Insegnamento {
-    private String nome;
-    private int CFU;
-    private String anno; // "I", "II" o "III"
-    private Docente docenteTitolare; // Relazione 1 a 1 dal lato Insegnamento
+    private final String nome;
+    private final int CFU;
+    private final String anno; // "I", "II" o "III"
+    private final Docente docenteTitolare; // Relazione 1 a 1 dal lato Insegnamento
 
     public Insegnamento(String nome, int cfu, String anno, Docente docenteTitolare) {
         this.nome = nome;
