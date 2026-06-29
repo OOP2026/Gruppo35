@@ -39,7 +39,7 @@ public class StudentePostgresDAO implements StudenteDAO {
                     String matricola = resultSet.getString("matricola");
 
                     // Adattalo ai parametri esatti del tuo costruttore Studente.
-                    // Se il costruttore del Main vuole anche l'anno di corso (es: "I"), lo passiamo statico o lo aggiungi a DB.
+                    // Se il costruttore del controller.Main vuole anche l'anno di corso (es: "I"), lo passiamo statico o lo aggiungi a DB.
                     return new Studente(nome, cognome, emailDb, passwordDb, matricola, "I");
                 }
             }
