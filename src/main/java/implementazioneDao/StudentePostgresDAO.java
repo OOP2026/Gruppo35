@@ -19,7 +19,6 @@ public class StudentePostgresDAO implements StudenteDAO {
 
     @Override
     public Studente loginStudente(String email, String password) {
-        // Query con JOIN per verificare le credenziali dello studente e prendere la matricola
         String query = "SELECT u.nome, u.cognome, u.email, u.password, s.matricola " +
                 "FROM utente u " +
                 "JOIN studente s ON u.email = s.email " +
@@ -38,8 +37,6 @@ public class StudentePostgresDAO implements StudenteDAO {
                     String passwordDb = resultSet.getString("password");
                     String matricola = resultSet.getString("matricola");
 
-                    // Adattalo ai parametri esatti del tuo costruttore Studente.
-                    // Se il costruttore del controller.Main vuole anche l'anno di corso (es: "I"), lo passiamo statico o lo aggiungi a DB.
                     return new Studente(nome, cognome, emailDb, passwordDb, matricola, "I");
                 }
             }
