@@ -31,6 +31,10 @@ public class Controller {
 	private final DocenteDAO docenteDAO;
 	private final StudenteDAO studenteDAO;
 
+	// Costanti per eliminare le stringhe duplicate (Critical Code Smells)
+	private static final String SCHERMATA_LOGIN = "SCHERMATA_LOGIN";
+	private static final String SCHERMATA_BOTTONI = "SchermataBottoni";
+
 	private final ArrayList<RichiestaSpostamento> richiesteSpostamento = new ArrayList<>();
 
 	/**
@@ -56,7 +60,7 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			tipoUtenteCorrente = "DOCENTE";
 			gui.impostaVisibilitaCodice(false);
-			gui.mostraSchermata("SchermataLogin");
+			gui.mostraSchermata(SCHERMATA_LOGIN);
 		}
 	}
 
@@ -65,7 +69,7 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			tipoUtenteCorrente = "STUDENTE";
 			gui.impostaVisibilitaCodice(false);
-			gui.mostraSchermata("SchermataLogin");
+			gui.mostraSchermata(SCHERMATA_LOGIN);
 		}
 	}
 
@@ -74,7 +78,7 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			tipoUtenteCorrente = "RESPONSABILE";
 			gui.impostaVisibilitaCodice(true);
-			gui.mostraSchermata("SchermataLogin");
+			gui.mostraSchermata(SCHERMATA_LOGIN);
 		}
 	}
 
@@ -82,7 +86,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			tipoUtenteCorrente = "";
-			gui.mostraSchermata("SchermataBottoni");
+			gui.mostraSchermata(SCHERMATA_BOTTONI);
 		}
 	}
 
@@ -93,7 +97,6 @@ public class Controller {
 			String passwordInserita = gui.getPasswordInput().trim();
 			boolean loginSuccesso = false;
 
-			// Switch classico compatibile con Java 8 (Language Level 8)
 			switch (tipoUtenteCorrente) {
 				case "DOCENTE":
 					Docente d = docenteDAO.loginDocente(emailInserita, passwordInserita);
@@ -110,7 +113,7 @@ public class Controller {
 
 						dashboardDocente.addLogoutListener(e1 -> {
 							dashboardDocente.dispose();
-							gui.mostraSchermata("SchermataBottoni");
+							gui.mostraSchermata(SCHERMATA_BOTTONI);
 							gui.setVisible(true);
 						});
 
@@ -122,30 +125,27 @@ public class Controller {
 					String codiceInserito = gui.getCodiceInput().trim();
 
 					Docente dr = docenteDAO.loginDocente(emailInserita, passwordInserita);
-					if (dr != null) {
-						if (codiceInserito.equals("2222")) {
-							loginSuccesso = true;
-							JOptionPane.showMessageDialog(gui, "Benvenuto Prof. " + dr.getCognome() + " in qualità di Responsabile!", "Login Riuscito", JOptionPane.INFORMATION_MESSAGE);
+					// Unione degli IF nidificati in un unico statement logico (Major Code Smell risolto alla riga 126)
+					if (dr != null && codiceInserito.equals("2222")) {
+						loginSuccesso = true;
+						JOptionPane.showMessageDialog(gui, "Benvenuto Prof. " + dr.getCognome() + " in qualità di Responsabile!", "Login Riuscito", JOptionPane.INFORMATION_MESSAGE);
 
-							gui.dispose();
+						gui.dispose();
 
-							GUIdocenteresponsabile dashboardResp = new GUIdocenteresponsabile(dr.getCognome());
-							dashboardResp.addVisualizzaRichiesteListener(new GestioneRichiesteResponsabileListener(dashboardResp));
+						GUIdocenteresponsabile dashboardResp = new GUIdocenteresponsabile(dr.getCognome());
+						dashboardResp.addVisualizzaRichiesteListener(new GestioneRichiesteResponsabileListener(dashboardResp));
 
-							dashboardResp.addLogoutListener(e2 -> {
-								dashboardResp.dispose();
-								gui.mostraSchermata("SchermataBottoni");
-								gui.setVisible(true);
-							});
-							dashboardResp.setVisible(true);
-						}
+						dashboardResp.addLogoutListener(e2 -> {
+							dashboardResp.dispose();
+							gui.mostraSchermata(SCHERMATA_BOTTONI);
+							gui.setVisible(true);
+						});
+						dashboardResp.setVisible(true);
 					}
 					break;
 
 				case "STUDENTE":
-					String emailStudente = emailInserita;
-					String passwordStudente = passwordInserita;
-					Studente s = studenteDAO.loginStudente(emailStudente, passwordStudente);
+					Studente s = studenteDAO.loginStudente(emailInserita, passwordInserita);
 					if (s != null) {
 						loginSuccesso = true;
 						JOptionPane.showMessageDialog(gui, "Benvenuto " + s.getNome() + " " + s.getCognome() + "!");
@@ -157,7 +157,7 @@ public class Controller {
 
 						dashboardStudente.addIndietroListener(e3 -> {
 							dashboardStudente.dispose();
-							gui.mostraSchermata("SchermataBottoni");
+							gui.mostraSchermata(SCHERMATA_BOTTONI);
 							gui.setVisible(true);
 						});
 						dashboardStudente.setVisible(true);
@@ -204,9 +204,7 @@ public class Controller {
 				}
 			});
 
-			formView.addAnnullaListener(ev -> {
-				dashboard.mostraPannelloIniziale();
-			});
+			formView.addAnnullaListener(ev -> dashboard.mostraPannelloIniziale());
 
 			dashboard.mostraPannelloSpostamento(formView);
 		}
@@ -224,13 +222,12 @@ public class Controller {
 					aulaTest
 			);
 
-			RichiestaSpostamento nuovaRichiesta = new RichiestaSpostamento(
+			return new RichiestaSpostamento(
 					lezioneSimulata,
 					giornoInserito,
 					inizioInserito,
 					fineInserito
 			);
-			return nuovaRichiesta;
 		}
 	}
 
