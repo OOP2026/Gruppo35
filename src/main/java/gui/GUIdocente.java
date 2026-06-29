@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 
 public class GUIdocente extends JFrame {
 
-    private static final long serialVersionUID = 1L; // CORREZIONE: Risolve il warning sulla serializzazione
+    private static final long serialVersionUID = 1L;
 
-    private JPanel mainPanel; // CORREZIONE: Aggiunto 'final'
-    private JLabel messaggioDocente; // CORREZIONE: Rinominato in camelCase (usando rename refactoring)
-    private JButton visualizzaOrarioDocente; // CORREZIONE: Convenzione nomi (minuscolo)
-    private JButton richiestaSpostamentoLezione; // CORREZIONE: Convenzione nomi (minuscolo)
-    private JButton logout; // CORREZIONE: Convenzione nomi (minuscolo)
+    private JPanel mainPanel;
+    private JLabel messaggioDocente;
+    private JButton visualizzaOrarioDocente;
+    private JButton richiestaSpostamentoLezione;
+    private JButton logout;
     private CardLayout cardLayout;
     private JPanel pannelloContenitore;
 
