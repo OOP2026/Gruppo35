@@ -27,7 +27,7 @@ public class GUIdocente extends JFrame {
 
         pannelloContenitore.add(mainPanel, "DASHBOARD_INIZIALE");
         setContentPane(pannelloContenitore);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 400);
         setLocationRelativeTo(null);
 
