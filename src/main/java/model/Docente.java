@@ -6,11 +6,13 @@ import java.util.List;
 public class Docente extends Utente {
     //il docente ha la possibilità di indicare max 3 vincoli
     private final List<VincoloDocente> vincoli;
+    private final boolean isResponsabile;
 
     //costruttore
-    public Docente(String nome, String cognome, String email, String password) {
+    public Docente(String nome, String cognome, String email, String password, boolean isResponsabile) {
         super(nome, cognome, email, password); //chiamata costruttore utente
         this.vincoli = new ArrayList<>();
+        this.isResponsabile = isResponsabile;
     }
 
     //get
@@ -25,5 +27,9 @@ public class Docente extends Utente {
         } else {
             System.out.println("Limite massimo di 3 vincoli raggiunto.");
         }
+    }
+
+    public boolean isResponsabile() {
+        return isResponsabile;
     }
 }

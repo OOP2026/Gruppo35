@@ -2,8 +2,8 @@ package controller;
 
 import dao.DocenteDAO;
 import dao.StudenteDAO;
-import implementazioneDao.DocentePostgresDAO;
-import implementazioneDao.StudentePostgresDAO;
+import implementazionedao.DocentePostgresDAO;
+import implementazionedao.StudentePostgresDAO;
 import gui.GUIdocente;
 import gui.GUIdocenteresponsabile;
 import gui.GUIstudente;

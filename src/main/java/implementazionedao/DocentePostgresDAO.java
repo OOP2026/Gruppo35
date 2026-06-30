@@ -1,4 +1,4 @@
-package implementazioneDao;
+package implementazionedao;
 
 import dao.DocenteDAO;
 import database_connection.ConnessioneDatabase;
@@ -42,7 +42,7 @@ public class DocentePostgresDAO implements DocenteDAO {
                     boolean isResponsabile = resultSet.getBoolean("is_responsabile");
 
                     // Istanziamo l'oggetto Docente da restituire
-                    Docente docente = new Docente(nome, cognome, emailDb, passwordDb);
+                    Docente docente = new Docente(nome, cognome, emailDb, passwordDb,  isResponsabile);
 
                     // Se la tua classe Docente ha un setter o un flag per il ruolo, lo imposti qui.
                     // Ad esempio: docente.setResponsabile(isResponsabile);
