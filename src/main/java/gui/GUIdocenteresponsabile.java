@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata alle funzionalità del docente responsabile
     private JPanel mainPanel;            // Pannello radice collegato alla grafica del file .form
-    private JButton VisualizzaRichieste;    // Bottone per aprire l'elenco delle richieste di spostamento in attesa
-    private JButton Logout;            // Bottone di logout per uscire e tornare alla schermata principale
-    private JLabel Titolo;            // Etichetta del titolo per mostrare il messaggio di benvenuto personalizzato
+    private JButton visualizzarichieste;    // Bottone per aprire l'elenco delle richieste di spostamento in attesa
+    private JButton logout;            // Bottone di logout per uscire e tornare alla schermata principale
+    private JLabel titolo;            // Etichetta del titolo per mostrare il messaggio di benvenuto personalizzato
 
     public GUIdocenteresponsabile(String cognomeDocente) {    // Costruttore: riceve il cognome del responsabile che ha effettuato l'accesso
         setTitle("Area Docente Responsabile");    // Imposta la scritta sulla barra del titolo della finestra
@@ -20,22 +20,22 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
         setSize(600, 450);            // Risoluzione iniziale della finestra (larghezza e altezza)
         setLocationRelativeTo(null);        // Fa apparire la finestra esattamente al centro dello schermo
 
-        if (Titolo != null) {            // Controllo di sicurezza per evitare NullPointerException prima di modificare il testo
-            Titolo.setText("Benvenuto Coordinatore, Prof. " + cognomeDocente);    // Imposta il testo di benvenuto con il cognome dinamico
+        if (titolo != null) {            // Controllo di sicurezza per evitare NullPointerException prima di modificare il testo
+            titolo.setText("Benvenuto Coordinatore, Prof. " + cognomeDocente);    // Imposta il testo di benvenuto con il cognome dinamico
         }
     }
 
     public void addVisualizzaRichiesteListener(ActionListener listener) {    // Passa il listener del controller al bottone per esaminare le richieste pendenti
-        if (VisualizzaRichieste != null) {
-            VisualizzaRichieste.addActionListener(listener);
+        if (visualizzarichieste != null) {
+            visualizzarichieste.addActionListener(listener);
         } else {
             System.out.println("Errore: Il bottone delle richieste del responsabile è null!");    // Messaggio di log utile in console per controllare se il name field nel .form è corretto
         }
     }
 
     public void addLogoutListener(ActionListener listener) {    // Passa il listener del controller al bottone di logout per gestire la disconnessione
-        if (Logout != null) {
-            Logout.addActionListener(listener);
+        if (logout != null) {
+            logout.addActionListener(listener);
         }
     }
 
@@ -56,16 +56,16 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
-        Titolo = new JLabel();
-        Titolo.setHorizontalAlignment(10);
-        Titolo.setText("Home responsabile");
-        mainPanel.add(Titolo, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        VisualizzaRichieste = new JButton();
-        VisualizzaRichieste.setText("Visualizza richieste spostamento lezioni");
-        mainPanel.add(VisualizzaRichieste, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        Logout = new JButton();
-        Logout.setText("Logout");
-        mainPanel.add(Logout, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        titolo = new JLabel();
+        titolo.setHorizontalAlignment(10);
+        titolo.setText("Home responsabile");
+        mainPanel.add(titolo, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        visualizzarichieste = new JButton();
+        visualizzarichieste.setText("Visualizza richieste spostamento lezioni");
+        mainPanel.add(visualizzarichieste, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        logout = new JButton();
+        logout.setText("Logout");
+        mainPanel.add(logout, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
