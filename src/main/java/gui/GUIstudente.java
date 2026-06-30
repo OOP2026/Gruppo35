@@ -40,7 +40,7 @@ public class GUIstudente extends JFrame {    // Finestra principale per la dashb
         if (indietro != null) {
             indietro.addActionListener(listener);
         } else {
-            System.out.println("Errore: Indietro è null nel codice dello Studente!");    // Log di controllo per verificare il name field nel designer
+            LOGGER.warning("Errore: Indietro è null nel codice dello Studente!");    // Log di controllo per verificare il name field nel designer
         }
     }
 
