@@ -3,6 +3,6 @@ package model;
 public class DocenteResponsabile extends Docente {
 
     public DocenteResponsabile(String nome, String cognome, String email, String password) {
-        super(nome, cognome, email, password);
+        super(nome, cognome, email, password, true);
     }
 }
