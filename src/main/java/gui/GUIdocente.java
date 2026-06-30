@@ -109,6 +109,7 @@ public class GUIdocente extends JFrame {
     /**
      * @noinspection ALL
      */
+    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
