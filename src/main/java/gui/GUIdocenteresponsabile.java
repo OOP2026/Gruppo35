@@ -16,7 +16,7 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
     public GUIdocenteresponsabile(String cognomeDocente) {    // Costruttore: riceve il cognome del responsabile che ha effettuato l'accesso
         setTitle("Area Docente Responsabile");    // Imposta la scritta sulla barra del titolo della finestra
         setContentPane(mainPanel);        // Associa il pannello principale del designer alla finestra
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Termina l'applicazione del tutto alla chiusura della finestra con la x
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    // Termina l'applicazione del tutto alla chiusura della finestra con la x
         setSize(600, 450);            // Risoluzione iniziale della finestra (larghezza e altezza)
         setLocationRelativeTo(null);        // Fa apparire la finestra esattamente al centro dello schermo
 
