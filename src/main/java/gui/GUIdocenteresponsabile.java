@@ -49,7 +49,6 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
      *
      * @noinspection ALL
      */
-    @SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -68,7 +67,6 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
     /**
      * @noinspection ALL
      */
-    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }

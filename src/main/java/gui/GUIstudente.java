@@ -6,18 +6,22 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
+
 
 public class GUIstudente extends JFrame {    // Finestra principale per la dashboard dell'utente studente
     private JPanel mainPanel;            // Pannello radice collegato alla grafica del file .form
     private JLabel messaggio;            // Etichetta di testo per salutare lo studente loggato
     private JButton visualizzaorario;        // Bottone per accedere alla visualizzazione dell'orario lezioni
     private JButton indietro;            // Bottone per disconnettersi e ritornare alla pagina di login
+    private static final Logger LOGGER = Logger.getLogger(GUIstudente.class.getName());
+
 
     public GUIstudente(String nomeStudente) {    // Costruttore: riceve il nome dello studente per personalizzare la view
         $$$setupUI$$$();
         setTitle("Area Riservata Studente");    // Imposta la scritta sulla barra in alto della finestra
         setContentPane(mainPanel);        // Associa il pannello del designer come contenuto della finestra
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Spegne il processo java alla chiusura della finestra con la x
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 400);            // Definisce la risoluzione in pixel della schermata dello studente
         setLocationRelativeTo(null);        // Fa comparire la finestra esattamente al centro dello schermo
 
@@ -28,7 +32,7 @@ public class GUIstudente extends JFrame {    // Finestra principale per la dashb
         if (visualizzaorario != null) {
             visualizzaorario.addActionListener(listener);
         } else {
-            System.out.println("Errore: VisualizzaOrario è null!");    // Log di avviso se il bottone non è configurato nel .form
+            LOGGER.warning("Errore: visualizzaorario è null!");
         }
     }
 
@@ -48,7 +52,6 @@ public class GUIstudente extends JFrame {    // Finestra principale per la dashb
      *
      * @noinspection ALL
      */
-    @SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -66,7 +69,6 @@ public class GUIstudente extends JFrame {    // Finestra principale per la dashb
     /**
      * @noinspection ALL
      */
-    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
