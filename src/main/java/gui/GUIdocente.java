@@ -6,6 +6,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 public class GUIdocente extends JFrame {
 
@@ -18,6 +19,7 @@ public class GUIdocente extends JFrame {
     private JButton logout;
     private CardLayout cardLayout;
     private JPanel pannelloContenitore;
+    private static final Logger LOGGER = Logger.getLogger(GUIdocente.class.getName());
 
     public GUIdocente(String cognomeDocente) {
         setTitle("Area Riservata Docente");
@@ -38,7 +40,7 @@ public class GUIdocente extends JFrame {
         if (messaggioDocente != null) {        // Controllo di sicurezza se il designer ha agganciato bene la label
             messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");    // Imposta il testo dinamico con il cognome
         } else {
-            System.out.println("Errore: MessaggioDocente è nullo! Controlla il file .form");    // Log di debug in console se qualcosa non va nel .form
+            LOGGER.warning("Errore: MessaggioDocente è nullo! Controlla il file .form");
         }
     }
 
