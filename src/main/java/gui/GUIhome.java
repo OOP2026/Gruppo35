@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class GUIhome extends JFrame {        // Finestra principale di ingresso (punto di partenza)
     private JPanel panel1;            // Pannello radice che contiene l'intera interfaccia
     private JPanel mainPanel;            // Pannello centrale configurato con CardLayout per switchare le schermate
+    @SuppressWarnings("java:S1450")
     private JPanel panelBottoni;        // Pannello della schermata iniziale con la scelta del ruolo
     private JPanel panelLogin;            // Pannello con i campi di testo per l'autenticazione
     private JLabel home;            // Etichetta del titolo principale del portale
