@@ -4,7 +4,6 @@ import dao.DocenteDAO;
 import database_connection.ConnessioneDatabase;
 import model.Docente;
 import java.util.logging.Logger;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

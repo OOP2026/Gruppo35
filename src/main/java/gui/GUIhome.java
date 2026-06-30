@@ -16,6 +16,7 @@ public class GUIhome extends JFrame {
     private JPanel panelBottoni;
 
     private JPanel panelLogin;
+
     @SuppressWarnings("java:S1450")
     private JLabel home;
 
