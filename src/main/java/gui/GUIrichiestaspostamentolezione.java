@@ -63,7 +63,7 @@ public class GUIrichiestaspostamentolezione extends JPanel {    // Pannello inte
      * DO NOT edit this method OR call it in your code!
      *
      * @noinspection ALL
-     */
+     */@SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
@@ -71,7 +71,7 @@ public class GUIrichiestaspostamentolezione extends JPanel {    // Pannello inte
 
     /**
      * @noinspection ALL
-     */
+     */@SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }

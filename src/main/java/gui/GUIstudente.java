@@ -51,7 +51,7 @@ public class GUIstudente extends JFrame {    // Finestra principale per la dashb
      * DO NOT edit this method OR call it in your code!
      *
      * @noinspection ALL
-     */
+     */@SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -68,7 +68,7 @@ public class GUIstudente extends JFrame {    // Finestra principale per la dashb
 
     /**
      * @noinspection ALL
-     */
+     */@SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
