@@ -2,13 +2,13 @@ package model;
 
 public class Insegnamento {
     private final String nome;
-    private final int CFU;
+    private final int cfu;
     private final String anno; // "I", "II" o "III"
     private final Docente docenteTitolare; // Relazione 1 a 1 dal lato Insegnamento
 
     public Insegnamento(String nome, int cfu, String anno, Docente docenteTitolare) {
         this.nome = nome;
-        this.CFU = cfu;
+        this.cfu = cfu;
         this.anno = anno;
         this.docenteTitolare = docenteTitolare;
     }
@@ -16,7 +16,7 @@ public class Insegnamento {
     public String getNome() {
         return nome; }
     public int getCfu() {
-        return CFU; }
+        return cfu; }
     public String getAnno() {
         return anno; }
     public Docente getDocenteTitolare() {
