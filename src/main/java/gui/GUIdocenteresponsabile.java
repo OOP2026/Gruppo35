@@ -6,12 +6,15 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata alle funzionalità del docente responsabile
     private JPanel mainPanel;            // Pannello radice collegato alla grafica del file .form
     private JButton visualizzarichieste;    // Bottone per aprire l'elenco delle richieste di spostamento in attesa
     private JButton logout;            // Bottone di logout per uscire e tornare alla schermata principale
     private JLabel titolo;            // Etichetta del titolo per mostrare il messaggio di benvenuto personalizzato
+    private static final Logger LOGGER = Logger.getLogger(GUIdocente.class.getName());
+
 
     public GUIdocenteresponsabile(String cognomeDocente) {    // Costruttore: riceve il cognome del responsabile che ha effettuato l'accesso
         setTitle("Area Docente Responsabile");    // Imposta la scritta sulla barra del titolo della finestra
@@ -29,7 +32,7 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
         if (visualizzarichieste != null) {
             visualizzarichieste.addActionListener(listener);
         } else {
-            System.out.println("Errore: Il bottone delle richieste del responsabile è null!");    // Messaggio di log utile in console per controllare se il name field nel .form è corretto
+            LOGGER.warning("Errore: Il bottone delle richieste del responsabile è null!");
         }
     }
 
