@@ -7,52 +7,52 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class GUIrichiestaspostamentolezione extends JPanel {    // Pannello interno per il modulo di richiesta spostamento lezioni
-    private final JTextField Data;            // Campo di testo per inserire il giorno della lezione
-    private final JTextField OraInizio;        // Campo di testo per l'orario di inizio della lezione
-    private final JTextField OraFine;            // Campo di testo per l'orario di fine della lezione
-    private final JButton InviaRichiesta;        // Bottone per confermare l'invio della richiesta al responsabile
-    private final JButton Annulla;            // Bottone per annullare l'operazione e tornare alla schermata precedente
+    private final JTextField data;            // Campo di testo per inserire il giorno della lezione
+    private final JTextField orainizio;        // Campo di testo per l'orario di inizio della lezione
+    private final JTextField orafine;            // Campo di testo per l'orario di fine della lezione
+    private final JButton inviarichiesta;        // Bottone per confermare l'invio della richiesta al responsabile
+    private final JButton annulla;            // Bottone per annullare l'operazione e tornare alla schermata precedente
     private JPanel mainPanel;            // Pannello di supporto eventualmente collegato al designer
 
     public GUIrichiestaspostamentolezione() {    // Costruttore: configura il layout e i componenti del form grafico
         setLayout(new GridLayout(4, 2, 10, 10));    // Imposta una griglia fissa di 4 righe e 2 colonne con margini di 10 pixel
 
         add(new JLabel("Data (AAAA-MM-GG):"));    // Aggiunge l'etichetta descrittiva per il campo data nella prima riga
-        Data = new JTextField();        // Inizializza la casella di testo per la data
-        add(Data);                // Posiziona la casella di testo a fianco della sua label
+        data = new JTextField();        // Inizializza la casella di testo per la data
+        add(data);                // Posiziona la casella di testo a fianco della sua label
 
         add(new JLabel("Ora Inizio (HH:MM):"));    // Aggiunge l'etichetta per l'orario di inizio nella seconda riga
-        OraInizio = new JTextField();        // Inizializza la casella per l'ora d'inizio
-        add(OraInizio);                // Inserisce la casella nella griglia
+        orainizio = new JTextField();        // Inizializza la casella per l'ora d'inizio
+        add(orainizio);                // Inserisce la casella nella griglia
 
         add(new JLabel("Ora Fine (HH:MM):"));    // Aggiunge l'etichetta per l'orario di fine nella terza riga
-        OraFine = new JTextField();        // Inizializza la casella per l'ora di fine
-        add(OraFine);                // Inserisce la casella nella griglia
+        orafine = new JTextField();        // Inizializza la casella per l'ora di fine
+        add(orafine);                // Inserisce la casella nella griglia
 
-        InviaRichiesta = new JButton("Invia Richiesta");    // Crea il bottone di conferma
-        Annulla = new JButton("Annulla");    // Crea il bottone di annullamento
-        add(InviaRichiesta);            // Posiziona il bottone invia nella quarta riga a sinistra
-        add(Annulla);                // Posiziona il bottone annulla nella quarta riga a destra
+        inviarichiesta = new JButton("Invia Richiesta");    // Crea il bottone di conferma
+        annulla = new JButton("Annulla");    // Crea il bottone di annullamento
+        add(inviarichiesta);            // Posiziona il bottone invia nella quarta riga a sinistra
+        add(annulla);                // Posiziona il bottone annulla nella quarta riga a destra
     }
 
     public String getDataInput() {        // Restituisce il testo inserito nel campo della data
-        return Data.getText();
+        return data.getText();
     }
 
     public String getOraInizioInput() {    // Restituisce il testo inserito nel campo dell'ora inizio
-        return OraInizio.getText();
+        return orainizio.getText();
     }
 
     public String getOraFineInput() {        // Restituisce il testo inserito nel campo dell'ora fine
-        return OraFine.getText();
+        return orafine.getText();
     }
 
     public void addInviaListener(ActionListener listener) {    // Passa il listener del controller al bottone di invio dati
-        InviaRichiesta.addActionListener(listener);
+        inviarichiesta.addActionListener(listener);
     }
 
     public void addAnnullaListener(ActionListener listener) {    // Passa il listener del controller al bottone per annullare il form
-        Annulla.addActionListener(listener);
+        annulla.addActionListener(listener);
     }
 
     {
