@@ -22,6 +22,8 @@ public class GUIdocente extends JFrame {
     private static final Logger LOGGER = Logger.getLogger(GUIdocente.class.getName());
 
     public GUIdocente(String cognomeDocente) {
+
+        $$$setupUI$$$();
         setTitle("Area Riservata Docente");
 
         cardLayout = new CardLayout();
