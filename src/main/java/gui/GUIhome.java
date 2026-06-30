@@ -30,7 +30,7 @@ public class GUIhome extends JFrame {        // Finestra principale di ingresso 
         setTitle("Portale Universitario");    // Imposta il titolo sulla barra superiore della finestra
         setContentPane(panel1); // Associa il pannello principale alla finestra
         mainPanel.add(panelLogin, "SCHERMATA_LOGIN");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Chiude l'applicazione quando si preme la x della finestra
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(450, 350);            // Imposta le dimensioni della finestra di login
         setLocationRelativeTo(null);        // Centra la finestra sullo schermo dell'utente
     }
