@@ -14,6 +14,8 @@ public class GUIhome extends JFrame {        // Finestra principale di ingresso 
     private JPanel panelBottoni;        // Pannello della schermata iniziale con la scelta del ruolo
     private JPanel panelLogin;            // Pannello con i campi di testo per l'autenticazione
     private JLabel home;            // Etichetta del titolo principale del portale
+
+    @SuppressWarnings("java:S1450")
     private JButton docente;            // Bottone per selezionare l'accesso come docente normale
     private JButton studente;            // Bottone per selezionare l'accesso come studente
     private JTextField email;            // Campo di testo per l'inserimento dell'email utente
