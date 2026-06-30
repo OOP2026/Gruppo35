@@ -2,11 +2,14 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
 
 public class Docente extends Utente {
     //il docente ha la possibilità di indicare max 3 vincoli
     private final List<VincoloDocente> vincoli;
     private final boolean isResponsabile;
+    private static final Logger LOGGER = Logger.getLogger(Docente.class.getName());
 
     //costruttore
     public Docente(String nome, String cognome, String email, String password, boolean isResponsabile) {
@@ -25,7 +28,7 @@ public class Docente extends Utente {
         if (this.vincoli.size() < 3) {
             this.vincoli.add(v);
         } else {
-            System.out.println("Limite massimo di 3 vincoli raggiunto.");
+            LOGGER.warning("Limite massimo di 3 vincoli raggiunto.");
         }
     }
 

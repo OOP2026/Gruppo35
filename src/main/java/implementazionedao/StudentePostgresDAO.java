@@ -3,6 +3,7 @@ package implementazionedao;
 import dao.StudenteDAO;
 import database_connection.ConnessioneDatabase;
 import model.Studente;
+import java.util.logging.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentePostgresDAO implements StudenteDAO {
+    private static final Logger LOGGER = Logger.getLogger(StudentePostgresDAO.class.getName());
 
     private final Connection connection;
 
@@ -41,8 +43,7 @@ public class StudentePostgresDAO implements StudenteDAO {
                     return new Studente(nome, cognome, emailDb, passwordDb, matricola, annoCorso);                }
             }
         } catch (SQLException e) {
-            System.out.println("Errore durante il login dello studente!");
-            e.printStackTrace();
+            LOGGER.warning("Errore durante il login dello studente!");
         }
 
         return null;

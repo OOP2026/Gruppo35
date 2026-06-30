@@ -3,6 +3,7 @@ package implementazionedao;
 import dao.DocenteDAO;
 import database_connection.ConnessioneDatabase;
 import model.Docente;
+import java.util.logging.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DocentePostgresDAO implements DocenteDAO {
-
     private final Connection connection;
-
+    private static final Logger LOGGER = Logger.getLogger(DocentePostgresDAO.class.getName());
     public DocentePostgresDAO() {
         // Recuperiamo l'istanza unica della connessione (Singleton)
         this.connection = ConnessioneDatabase.getInstance().getConnection();
@@ -41,18 +41,11 @@ public class DocentePostgresDAO implements DocenteDAO {
                     String passwordDb = resultSet.getString("password");
                     boolean isResponsabile = resultSet.getBoolean("is_responsabile");
 
-                    // Istanziamo l'oggetto Docente da restituire
-                    Docente docente = new Docente(nome, cognome, emailDb, passwordDb,  isResponsabile);
-
-                    // Se la tua classe Docente ha un setter o un flag per il ruolo, lo imposti qui.
-                    // Ad esempio: docente.setResponsabile(isResponsabile);
-
-                    return docente;
+                    return new Docente(nome, cognome, emailDb, passwordDb, isResponsabile);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Errore durante il login del docente!");
-            e.printStackTrace();
+            LOGGER.warning("Errore durante il login del docente!");
         }
 
         return null; // Credenziali errate o utente non trovato
