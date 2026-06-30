@@ -19,7 +19,7 @@ public class StudentePostgresDAO implements StudenteDAO {
 
     @Override
     public Studente loginStudente(String email, String password) {
-        String query = "SELECT u.nome, u.cognome, u.email, u.password, s.matricola " +
+        String query = "SELECT u.nome, u.cognome, u.email, u.password, s.matricola, s.anno_corso " +
                 "FROM utente u " +
                 "JOIN studente s ON u.email = s.email " +
                 "WHERE u.email = ? AND u.password = ?";
@@ -36,9 +36,9 @@ public class StudentePostgresDAO implements StudenteDAO {
                     String emailDb = resultSet.getString("email");
                     String passwordDb = resultSet.getString("password");
                     String matricola = resultSet.getString("matricola");
+                    String annoCorso = resultSet.getString("anno_corso");
 
-                    return new Studente(nome, cognome, emailDb, passwordDb, matricola, "I");
-                }
+                    return new Studente(nome, cognome, emailDb, passwordDb, matricola, annoCorso);                }
             }
         } catch (SQLException e) {
             System.out.println("Errore durante il login dello studente!");
