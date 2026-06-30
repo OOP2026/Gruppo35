@@ -89,6 +89,7 @@ public class GUIhome extends JFrame { // Finestra principale di ingresso (punto 
      *
      * @noinspection ALL
      */
+    @SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
         panel1.setLayout(new CardLayout(0, 0));
@@ -134,6 +135,7 @@ public class GUIhome extends JFrame { // Finestra principale di ingresso (punto 
     /**
      * @noinspection ALL
      */
+    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
