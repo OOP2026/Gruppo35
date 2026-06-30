@@ -8,27 +8,26 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
-public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata alle funzionalità del docente responsabile
-    private JPanel mainPanel;            // Pannello radice collegato alla grafica del file .form
-    private JButton visualizzarichieste;    // Bottone per aprire l'elenco delle richieste di spostamento in attesa
-    private JButton logout;            // Bottone di logout per uscire e tornare alla schermata principale
-    private JLabel titolo;            // Etichetta del titolo per mostrare il messaggio di benvenuto personalizzato
+public class GUIdocenteresponsabile extends JFrame {
+    private JPanel mainPanel;
+    private JButton visualizzarichieste;
+    private JButton logout;
+    private JLabel titolo;
     private static final Logger LOGGER = Logger.getLogger(GUIdocenteresponsabile.class.getName());
 
-    public GUIdocenteresponsabile(String cognomeDocente) {    // Costruttore: riceve il cognome del responsabile che ha effettuato l'accesso
+    public GUIdocenteresponsabile(String cognomeDocente) {
         $$$setupUI$$$();
-        setTitle("Area Docente Responsabile");    // Imposta la scritta sulla barra del titolo della finestra
-        setContentPane(mainPanel);        // Associa il pannello principale del designer alla finestra
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    // Termina l'applicazione del tutto alla chiusura della finestra con la x
-        setSize(600, 450);            // Risoluzione iniziale della finestra (larghezza e altezza)
-        setLocationRelativeTo(null);        // Fa apparire la finestra esattamente al centro dello schermo
-
-        if (titolo != null) {            // Controllo di sicurezza per evitare NullPointerException prima di modificare il testo
-            titolo.setText("Benvenuto Coordinatore, Prof. " + cognomeDocente);    // Imposta il testo di benvenuto con il cognome dinamico
+        setTitle("Area Docente Responsabile");
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(600, 450);
+        setLocationRelativeTo(null);
+        if (titolo != null) {
+            titolo.setText("Benvenuto Coordinatore, Prof. " + cognomeDocente);
         }
     }
 
-    public void addVisualizzaRichiesteListener(ActionListener listener) {    // Passa il listener del controller al bottone per esaminare le richieste pendenti
+    public void addVisualizzaRichiesteListener(ActionListener listener) {
         if (visualizzarichieste != null) {
             visualizzarichieste.addActionListener(listener);
         } else {
@@ -36,7 +35,7 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
         }
     }
 
-    public void addLogoutListener(ActionListener listener) {    // Passa il listener del controller al bottone di logout per gestire la disconnessione
+    public void addLogoutListener(ActionListener listener) {
         if (logout != null) {
             logout.addActionListener(listener);
         }

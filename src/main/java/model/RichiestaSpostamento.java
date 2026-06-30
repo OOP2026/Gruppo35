@@ -3,10 +3,10 @@ package model;
 import java.time.LocalTime;
 
 public class RichiestaSpostamento {
-    private final Lezione lezione;//lezione originale
-    private final String giorno;//giorno proposto
-    private final LocalTime oraInizio;//ora di inizio proposta
-    private final LocalTime oraFine;//ora di fine proposta
+    private final Lezione lezione;
+    private final String giorno;
+    private final LocalTime oraInizio;
+    private final LocalTime oraFine;
     private StatoRichiesta stato;
 
     public RichiestaSpostamento(Lezione lezione, String giorno, LocalTime oraInizio, LocalTime oraFine) {
@@ -14,7 +14,7 @@ public class RichiestaSpostamento {
         this.giorno = giorno;
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
-        this.stato = StatoRichiesta.IN_ATTESA; // Immagino sia settato qui di default
+        this.stato = StatoRichiesta.IN_ATTESA;
     }
 
     public Lezione getLezione() {

@@ -6,7 +6,7 @@ public class Studente extends Utente {
     private String annoCorso;
 
     public Studente(String nome, String cognome, String email, String password, String matricola, String annoCorso) {
-        super(nome, cognome, email, password); //chiamata degli attributi della superclasse col costruttore
+        super(nome, cognome, email, password);
         this.matricola = matricola;
         this.annoCorso = annoCorso;
     }

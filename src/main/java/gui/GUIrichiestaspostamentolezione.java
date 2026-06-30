@@ -6,53 +6,49 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class GUIrichiestaspostamentolezione extends JPanel {    // Pannello interno per il modulo di richiesta spostamento lezioni
-    private final JTextField data;            // Campo di testo per inserire il giorno della lezione
-    private final JTextField orainizio;        // Campo di testo per l'orario di inizio della lezione
-    private final JTextField orafine;            // Campo di testo per l'orario di fine della lezione
-    private final JButton inviarichiesta;        // Bottone per confermare l'invio della richiesta al responsabile
-    private final JButton annulla;            // Bottone per annullare l'operazione e tornare alla schermata precedente
-    private JPanel mainPanel;            // Pannello di supporto eventualmente collegato al designer
+public class GUIrichiestaspostamentolezione extends JPanel {
+    private final JTextField data;
+    private final JTextField orainizio;
+    private final JTextField orafine;
+    private final JButton inviarichiesta;
+    private final JButton annulla;
+    private JPanel mainPanel;
 
-    public GUIrichiestaspostamentolezione() {    // Costruttore: configura il layout e i componenti del form grafico
+    public GUIrichiestaspostamentolezione() {
         $$$setupUI$$$();
-        setLayout(new GridLayout(4, 2, 10, 10));    // Imposta una griglia fissa di 4 righe e 2 colonne con margini di 10 pixel
-
-        add(new JLabel("Data (AAAA-MM-GG):"));    // Aggiunge l'etichetta descrittiva per il campo data nella prima riga
-        data = new JTextField();        // Inizializza la casella di testo per la data
-        add(data);                // Posiziona la casella di testo a fianco della sua label
-
-        add(new JLabel("Ora Inizio (HH:MM):"));    // Aggiunge l'etichetta per l'orario di inizio nella seconda riga
-        orainizio = new JTextField();        // Inizializza la casella per l'ora d'inizio
-        add(orainizio);                // Inserisce la casella nella griglia
-
-        add(new JLabel("Ora Fine (HH:MM):"));    // Aggiunge l'etichetta per l'orario di fine nella terza riga
-        orafine = new JTextField();        // Inizializza la casella per l'ora di fine
-        add(orafine);                // Inserisce la casella nella griglia
-
-        inviarichiesta = new JButton("Invia Richiesta");    // Crea il bottone di conferma
-        annulla = new JButton("Annulla");    // Crea il bottone di annullamento
-        add(inviarichiesta);            // Posiziona il bottone invia nella quarta riga a sinistra
-        add(annulla);                // Posiziona il bottone annulla nella quarta riga a destra
+        setLayout(new GridLayout(4, 2, 10, 10));
+        add(new JLabel("Data (AAAA-MM-GG):"));
+        data = new JTextField();
+        add(data);
+        add(new JLabel("Ora Inizio (HH:MM):"));
+        orainizio = new JTextField();
+        add(orainizio);
+        add(new JLabel("Ora Fine (HH:MM):"));
+        orafine = new JTextField();
+        add(orafine);
+        inviarichiesta = new JButton("Invia Richiesta");
+        annulla = new JButton("Annulla");
+        add(inviarichiesta);
+        add(annulla);
     }
 
-    public String getDataInput() {        // Restituisce il testo inserito nel campo della data
+    public String getDataInput() {
         return data.getText();
     }
 
-    public String getOraInizioInput() {    // Restituisce il testo inserito nel campo dell'ora inizio
+    public String getOraInizioInput() {
         return orainizio.getText();
     }
 
-    public String getOraFineInput() {        // Restituisce il testo inserito nel campo dell'ora fine
+    public String getOraFineInput() {
         return orafine.getText();
     }
 
-    public void addInviaListener(ActionListener listener) {    // Passa il listener del controller al bottone di invio dati
+    public void addInviaListener(ActionListener listener) {
         inviarichiesta.addActionListener(listener);
     }
 
-    public void addAnnullaListener(ActionListener listener) {    // Passa il listener del controller al bottone per annullare il form
+    public void addAnnullaListener(ActionListener listener) {
         annulla.addActionListener(listener);
     }
 

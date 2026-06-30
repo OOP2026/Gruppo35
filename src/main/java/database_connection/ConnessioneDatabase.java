@@ -15,7 +15,6 @@ public class ConnessioneDatabase {
     @SuppressWarnings({"java:S2068", "java:S6437"})
     private static final String PASSWORD = "ale1926";
 
-    /* Il costruttore privato impedisce l'istanziazione diretta dall'esterno */
     @SuppressWarnings({"java:S106", "java:S4507", "java:S2068", "java:S6437"})
     private ConnessioneDatabase() {
         try {
@@ -33,12 +32,11 @@ public class ConnessioneDatabase {
                 instance = new ConnessioneDatabase();
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Riga 35 sistemata!
+            e.printStackTrace();
         }
         return instance;
     }
 
-    /* Restituisce l'oggetto Connection utile per preparare le query SQL */
     public Connection getConnection() {
         return connection;
     }

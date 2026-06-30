@@ -3,8 +3,8 @@ package model;
 public class Insegnamento {
     private final String nome;
     private final int cfu;
-    private final String anno; // "I", "II" o "III"
-    private final Docente docenteTitolare; // Relazione 1 a 1 dal lato Insegnamento
+    private final String anno;
+    private final Docente docenteTitolare;
 
     public Insegnamento(String nome, int cfu, String anno, Docente docenteTitolare) {
         this.nome = nome;

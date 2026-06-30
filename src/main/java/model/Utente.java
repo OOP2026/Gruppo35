@@ -1,7 +1,5 @@
 package model;
 
-//classe astratta così che non si creano oggetti di tipo utente, data la generalizzazione con studente e docente
-//inoltre definiamo gli attributi che verranno passati come attributi nelle classi figlie, senza doverli riscrivere
 public abstract class Utente {
     private String nome;
     private String cognome;
@@ -15,7 +13,6 @@ public abstract class Utente {
         this.password = password;
     }
 
-    //get e set nel caso servissero
     public String getNome() {
         return nome; }
     public void setNome(String nome) {

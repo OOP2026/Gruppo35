@@ -8,79 +8,81 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class GUIhome extends JFrame { // Finestra principale di ingresso (punto di partenza)
-    private JPanel panel1;            // Pannello radice che contiene l'intera interfaccia
-    private JPanel mainPanel;            // Pannello centrale configurato con CardLayout per switchare le schermate
-    @SuppressWarnings("java:S1450")
-    private JPanel panelBottoni;        // Pannello della schermata iniziale con la scelta del ruolo
-    private JPanel panelLogin;            // Pannello con i campi di testo per l'autenticazione
-    private JLabel home;            // Etichetta del titolo principale del portale
+public class GUIhome extends JFrame {
+    private JPanel panel1;
+    private JPanel mainPanel;
 
     @SuppressWarnings("java:S1450")
-    private JButton docente;            // Bottone per selezionare l'accesso come docente normale
-    private JButton studente;            // Bottone per selezionare l'accesso come studente
-    private JTextField email;            // Campo di testo per l'inserimento dell'email utente
-    private JTextField password;        // Campo di testo per l'inserimento della password
-    private JButton accedi;            // Bottone per confermare l'invio dei dati di login
-    private JButton indietro;            // Bottone per annullare il login e tornare alla scelta del ruolo
-    private JButton docenteresponsabile;    // Bottone per selezionare l'accesso come coordinatore/responsabile
-    private JTextField codiceresponsabile;    // Campo di testo aggiuntivo per il codice di sicurezza del responsabile
+    private JPanel panelBottoni;
 
-    public GUIhome() {                // Costruttore: configura le proprietà di base della finestra iniziale
+    private JPanel panelLogin;
+    private JLabel home;
+
+    @SuppressWarnings("java:S1450")
+    private JButton docente;
+
+    private JButton studente;
+    private JTextField email;
+    private JTextField password;
+    private JButton accedi;
+    private JButton indietro;
+    private JButton docenteresponsabile;
+    private JTextField codiceresponsabile;
+
+    public GUIhome() {
         $$$setupUI$$$();
-        setTitle("Portale Universitario");    // Imposta il titolo sulla barra superiore della finestra
-        setContentPane(panel1); // Associa il pannello principale alla finestra
+        setTitle("Portale Universitario");
+        setContentPane(panel1);
         mainPanel.add(panelLogin, "SCHERMATA_LOGIN");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(450, 350);            // Imposta le dimensioni della finestra di login
-        setLocationRelativeTo(null);        // Centra la finestra sullo schermo dell'utente
+        setSize(450, 350);
+        setLocationRelativeTo(null);
     }
 
-    public void mostraSchermata(String nomeCard) {    // Metodo per cambiare schermata
-        CardLayout cl = (CardLayout) mainPanel.getLayout();    // Recupera il gestore CardLayout dal pannello centrale
-        cl.show(mainPanel, nomeCard);        // Mostra la schermata corrispondente al nome passato come parametro
-        mainPanel.revalidate();            // Ricalcola il layout per evitare glitch grafici dopo lo switch
-        mainPanel.repaint();            // Rinfresca visivamente i componenti grafici del pannello
+    public void mostraSchermata(String nomeCard) {
+        CardLayout cl = (CardLayout) mainPanel.getLayout();
+        cl.show(mainPanel, nomeCard);
+        mainPanel.revalidate();
+        mainPanel.repaint();
     }
 
-    public void addDocenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone docente
+    public void addDocenteListener(ActionListener l) {
         docente.addActionListener(l);
     }
 
-    public void addStudenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone Studente
+    public void addStudenteListener(ActionListener l) {
         studente.addActionListener(l);
     }
 
-    public void addAccediListener(ActionListener listener) {    // Aggancia il listener al bottone Accedi per verificare le credenziali
+    public void addAccediListener(ActionListener listener) {
         accedi.addActionListener(listener);
     }
 
-    public void addIndietroListener(ActionListener listener) {    // Aggancia il listener al bottone Indietro per tornare alla home
+    public void addIndietroListener(ActionListener listener) {
         indietro.addActionListener(listener);
     }
 
-    public void addDocenteResponsabileListener(ActionListener listener) {    // Aggancia il listener al bottone del docente Responsabile
+    public void addDocenteResponsabileListener(ActionListener listener) {
         docenteresponsabile.addActionListener(listener);
     }
 
-    public String getCodiceInput() {        // Restituisce il codice inserito dal responsabile eliminando spazi vuoti
+    public String getCodiceInput() {
         return codiceresponsabile.getText().trim();
     }
 
-    public void impostaVisibilitaCodice(boolean visibile) {    // Mostra o nasconde il campo codice a seconda del ruolo selezionato
-        codiceresponsabile.setVisible(visibile);    // Cambia lo stato di visibilità del componente
-        codiceresponsabile.revalidate();    // Aggiorna la struttura del layout dopo il cambio di visibilità
-        codiceresponsabile.repaint();        // Ridisegna il componente a schermo
+    public void impostaVisibilitaCodice(boolean visibile) {
+        codiceresponsabile.setVisible(visibile);
+        codiceresponsabile.revalidate();
+        codiceresponsabile.repaint();
     }
 
-    public String getEmailInput() {        // Restituisce il testo digitato nel campo Email
+    public String getEmailInput() {
         return email.getText();
     }
 
-    public String getPasswordInput() {        // Restituisce il testo digitato nel campo Password
+    public String getPasswordInput() {
         return password.getText();
     }
-
 
     /**
      * Method generated by IntelliJ IDEA GUI Designer

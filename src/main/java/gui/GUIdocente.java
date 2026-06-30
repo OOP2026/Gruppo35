@@ -2,16 +2,13 @@ package gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 public class GUIdocente extends JFrame {
-
     private static final long serialVersionUID = 1L;
-
     private JPanel mainPanel;
     private JLabel messaggioDocente;
     private JButton visualizzaOrarioDocente;
@@ -22,61 +19,56 @@ public class GUIdocente extends JFrame {
     private static final Logger LOGGER = Logger.getLogger(GUIdocente.class.getName());
 
     public GUIdocente(String cognomeDocente) {
-
         $$$setupUI$$$();
         setTitle("Area Riservata Docente");
-
         cardLayout = new CardLayout();
         pannelloContenitore = new JPanel(cardLayout);
-
         pannelloContenitore.add(mainPanel, "DASHBOARD_INIZIALE");
         setContentPane(pannelloContenitore);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 400);
         setLocationRelativeTo(null);
-
         inizializzaDati(cognomeDocente);
     }
 
-    private void inizializzaDati(String cognomeDocente) {    // Metodo di supporto per personalizzare il messaggio di benvenuto
-        if (messaggioDocente != null) {        // Controllo di sicurezza se il designer ha agganciato bene la label
-            messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");    // Imposta il testo dinamico con il cognome
+    private void inizializzaDati(String cognomeDocente) {
+        if (messaggioDocente != null) {
+            messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");
         } else {
             LOGGER.warning("Errore: MessaggioDocente è nullo! Controlla il file .form");
         }
     }
 
-    public void mostraPannelloSpostamento(JPanel nuovoPannello) {    // Mostra il form per lo spostamento inserendolo nel CardLayout a runtime
+    public void mostraPannelloSpostamento(JPanel nuovoPannello) {
         try {
             pannelloContenitore.remove(nuovoPannello);
-        } catch (IllegalArgumentException e) { // Specifica l'eccezione esatta
-            // È normale che il pannello non sia presente la prima volta, non serve azione
-            // Commento esplicativo come richiesto da SonarQube
+        } catch (IllegalArgumentException e) {
+            // Commento esplicativo richiesto da SonarQube
         }
 
-        pannelloContenitore.add(nuovoPannello, "FORM_SPOSTAMENTO");    // Aggiunge il nuovo form associandogli una chiave testuale
-        cardLayout.show(pannelloContenitore, "FORM_SPOSTAMENTO");    // Dice al layout di switchare visivamente sul form
+        pannelloContenitore.add(nuovoPannello, "FORM_SPOSTAMENTO");
+        cardLayout.show(pannelloContenitore, "FORM_SPOSTAMENTO");
     }
 
-    public void addVisualizzaOrarioDocenteListener(ActionListener listener) {    // Aggancia il listener del controller al bottone dell'orario
+    public void addVisualizzaOrarioDocenteListener(ActionListener listener) {
         if (visualizzaOrarioDocente != null) {
             visualizzaOrarioDocente.addActionListener(listener);
         }
     }
 
-    public void addRichiestaSpostamentoLezioneListener(ActionListener listener) {    // Aggancia il listener del controller al bottone di spostamento lezione
+    public void addRichiestaSpostamentoLezioneListener(ActionListener listener) {
         if (richiestaSpostamentoLezione != null) {
             richiestaSpostamentoLezione.addActionListener(listener);
         }
     }
 
-    public void addLogoutListener(ActionListener listener) {    // Aggancia il listener del controller al bottone di logout
+    public void addLogoutListener(ActionListener listener) {
         if (logout != null) {
             logout.addActionListener(listener);
         }
     }
 
-    public void mostraPannelloIniziale() {    // Metodo richiamato dal controller per tornare alla schermata iniziale del prof
+    public void mostraPannelloIniziale() {
         cardLayout.show(pannelloContenitore, "DASHBOARD_INIZIALE");
     }
 

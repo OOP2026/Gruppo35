@@ -25,10 +25,8 @@ public class DocentePostgresDAO implements DocenteDAO {
                 "WHERE u.email = ? AND u.password = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-
             statement.setString(1, email);
             statement.setString(2, password);
-
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String nome = resultSet.getString("nome");
@@ -36,7 +34,6 @@ public class DocentePostgresDAO implements DocenteDAO {
                     String emailDb = resultSet.getString("email");
                     String passwordDb = resultSet.getString("password");
                     boolean isResponsabile = resultSet.getBoolean("is_responsabile");
-
                     return new Docente(nome, cognome, emailDb, passwordDb, isResponsabile);
                 }
             }
