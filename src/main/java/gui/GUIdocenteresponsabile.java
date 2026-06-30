@@ -13,8 +13,7 @@ public class GUIdocenteresponsabile extends JFrame {    // Finestra dedicata all
     private JButton visualizzarichieste;    // Bottone per aprire l'elenco delle richieste di spostamento in attesa
     private JButton logout;            // Bottone di logout per uscire e tornare alla schermata principale
     private JLabel titolo;            // Etichetta del titolo per mostrare il messaggio di benvenuto personalizzato
-    private static final Logger LOGGER = Logger.getLogger(GUIdocente.class.getName());
-
+    private static final Logger LOGGER = Logger.getLogger(GUIdocenteresponsabile.class.getName());
 
     public GUIdocenteresponsabile(String cognomeDocente) {    // Costruttore: riceve il cognome del responsabile che ha effettuato l'accesso
         setTitle("Area Docente Responsabile");    // Imposta la scritta sulla barra del titolo della finestra
