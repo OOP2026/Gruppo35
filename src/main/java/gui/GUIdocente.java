@@ -46,9 +46,11 @@ public class GUIdocente extends JFrame {
 
     public void mostraPannelloSpostamento(JPanel nuovoPannello) {    // Mostra il form per lo spostamento inserendolo nel CardLayout a runtime
         try {
-            pannelloContenitore.remove(nuovoPannello);    // Rimuove eventuali vecchie istanze del form per evitare duplicati
-        } catch (Exception ignored) {
-        }        // Ignora l'eccezione se il pannello non esisteva ancora
+            pannelloContenitore.remove(nuovoPannello);
+        } catch (IllegalArgumentException e) { // Specifica l'eccezione esatta
+            // È normale che il pannello non sia presente la prima volta, non serve azione
+            // Commento esplicativo come richiesto da SonarQube
+        }
 
         pannelloContenitore.add(nuovoPannello, "FORM_SPOSTAMENTO");    // Aggiunge il nuovo form associandogli una chiave testuale
         cardLayout.show(pannelloContenitore, "FORM_SPOSTAMENTO");    // Dice al layout di switchare visivamente sul form
