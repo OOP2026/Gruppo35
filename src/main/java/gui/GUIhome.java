@@ -13,15 +13,15 @@ public class GUIhome extends JFrame {        // Finestra principale di ingresso 
     private JPanel mainPanel;            // Pannello centrale configurato con CardLayout per switchare le schermate
     private JPanel panelBottoni;        // Pannello della schermata iniziale con la scelta del ruolo
     private JPanel panelLogin;            // Pannello con i campi di testo per l'autenticazione
-    private JLabel Home;            // Etichetta del titolo principale del portale
-    private JButton Docente;            // Bottone per selezionare l'accesso come docente normale
-    private JButton Studente;            // Bottone per selezionare l'accesso come studente
-    private JTextField Email;            // Campo di testo per l'inserimento dell'email utente
+    private JLabel home;            // Etichetta del titolo principale del portale
+    private JButton docente;            // Bottone per selezionare l'accesso come docente normale
+    private JButton studente;            // Bottone per selezionare l'accesso come studente
+    private JTextField email;            // Campo di testo per l'inserimento dell'email utente
     private JTextField password;        // Campo di testo per l'inserimento della password
-    private JButton Accedi;            // Bottone per confermare l'invio dei dati di login
-    private JButton Indietro;            // Bottone per annullare il login e tornare alla scelta del ruolo
-    private JButton DocenteResponsabile;    // Bottone per selezionare l'accesso come coordinatore/responsabile
-    private JTextField CodiceResponsabile;    // Campo di testo aggiuntivo per il codice di sicurezza del responsabile
+    private JButton accedi;            // Bottone per confermare l'invio dei dati di login
+    private JButton indietro;            // Bottone per annullare il login e tornare alla scelta del ruolo
+    private JButton docenteresponsabile;    // Bottone per selezionare l'accesso come coordinatore/responsabile
+    private JTextField codiceresponsabile;    // Campo di testo aggiuntivo per il codice di sicurezza del responsabile
 
     public GUIhome() {                // Costruttore: configura le proprietà di base della finestra iniziale
         setTitle("Portale Universitario");    // Imposta il titolo sulla barra superiore della finestra
@@ -39,38 +39,38 @@ public class GUIhome extends JFrame {        // Finestra principale di ingresso 
         mainPanel.repaint();            // Rinfresca visivamente i componenti grafici del pannello
     }
 
-    public void addDocenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone Docente
-        Docente.addActionListener(l);
+    public void addDocenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone docente
+        docente.addActionListener(l);
     }
 
     public void addStudenteListener(ActionListener l) {    // Aggancia il listener del controller al bottone Studente
-        Studente.addActionListener(l);
+        studente.addActionListener(l);
     }
 
     public void addAccediListener(ActionListener listener) {    // Aggancia il listener al bottone Accedi per verificare le credenziali
-        Accedi.addActionListener(listener);
+        accedi.addActionListener(listener);
     }
 
     public void addIndietroListener(ActionListener listener) {    // Aggancia il listener al bottone Indietro per tornare alla home
-        Indietro.addActionListener(listener);
+        indietro.addActionListener(listener);
     }
 
-    public void addDocenteResponsabileListener(ActionListener listener) {    // Aggancia il listener al bottone del Docente Responsabile
-        DocenteResponsabile.addActionListener(listener);
+    public void addDocenteResponsabileListener(ActionListener listener) {    // Aggancia il listener al bottone del docente Responsabile
+        docenteresponsabile.addActionListener(listener);
     }
 
     public String getCodiceInput() {        // Restituisce il codice inserito dal responsabile eliminando spazi vuoti
-        return CodiceResponsabile.getText().trim();
+        return codiceresponsabile.getText().trim();
     }
 
     public void impostaVisibilitaCodice(boolean visibile) {    // Mostra o nasconde il campo codice a seconda del ruolo selezionato
-        CodiceResponsabile.setVisible(visibile);    // Cambia lo stato di visibilità del componente
-        CodiceResponsabile.revalidate();    // Aggiorna la struttura del layout dopo il cambio di visibilità
-        CodiceResponsabile.repaint();        // Ridisegna il componente a schermo
+        codiceresponsabile.setVisible(visibile);    // Cambia lo stato di visibilità del componente
+        codiceresponsabile.revalidate();    // Aggiorna la struttura del layout dopo il cambio di visibilità
+        codiceresponsabile.repaint();        // Ridisegna il componente a schermo
     }
 
     public String getEmailInput() {        // Restituisce il testo digitato nel campo Email
-        return Email.getText();
+        return email.getText();
     }
 
     public String getPasswordInput() {        // Restituisce il testo digitato nel campo Password
@@ -101,36 +101,36 @@ public class GUIhome extends JFrame {        // Finestra principale di ingresso 
         panelBottoni = new JPanel();
         panelBottoni.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panelBottoni, "SchermataBottoni");
-        Docente = new JButton();
-        Docente.setText("login docente");
-        panelBottoni.add(Docente, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        Studente = new JButton();
-        Studente.setText("login studente");
-        panelBottoni.add(Studente, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        Home = new JLabel();
-        Home.setText("HOME");
-        panelBottoni.add(Home, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        DocenteResponsabile = new JButton();
-        DocenteResponsabile.setText("login docente responsabile");
-        panelBottoni.add(DocenteResponsabile, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        docente = new JButton();
+        docente.setText("login docente");
+        panelBottoni.add(docente, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        studente = new JButton();
+        studente.setText("login studente");
+        panelBottoni.add(studente, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        home = new JLabel();
+        home.setText("HOME");
+        panelBottoni.add(home, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        docenteresponsabile = new JButton();
+        docenteresponsabile.setText("login docente responsabile");
+        panelBottoni.add(docenteresponsabile, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panelLogin = new JPanel();
         panelLogin.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panelLogin, "SchermataLogin");
-        Email = new JTextField();
-        Email.setText("Email");
-        panelLogin.add(Email, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
-        Accedi = new JButton();
-        Accedi.setText("Accedi");
-        panelLogin.add(Accedi, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        email = new JTextField();
+        email.setText("Email");
+        panelLogin.add(email, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        accedi = new JButton();
+        accedi.setText("Accedi");
+        panelLogin.add(accedi, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         password = new JTextField();
         password.setText("Password");
         panelLogin.add(password, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
-        Indietro = new JButton();
-        Indietro.setText("Indietro");
-        panelLogin.add(Indietro, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        CodiceResponsabile = new JTextField();
-        CodiceResponsabile.setText("Codice");
-        panelLogin.add(CodiceResponsabile, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        indietro = new JButton();
+        indietro.setText("Indietro");
+        panelLogin.add(indietro, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        codiceresponsabile = new JTextField();
+        codiceresponsabile.setText("Codice");
+        panelLogin.add(codiceresponsabile, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
     }
 
     /**

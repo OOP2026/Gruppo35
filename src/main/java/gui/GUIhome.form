@@ -22,7 +22,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="18bbf" class="javax.swing.JButton" binding="Docente">
+              <component id="18bbf" class="javax.swing.JButton" binding="docente">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -30,7 +30,7 @@
                   <text value="login docente"/>
                 </properties>
               </component>
-              <component id="25e1b" class="javax.swing.JButton" binding="Studente">
+              <component id="25e1b" class="javax.swing.JButton" binding="studente">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -38,7 +38,7 @@
                   <text value="login studente"/>
                 </properties>
               </component>
-              <component id="35288" class="javax.swing.JLabel" binding="Home">
+              <component id="35288" class="javax.swing.JLabel" binding="home">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -46,7 +46,7 @@
                   <text value="HOME"/>
                 </properties>
               </component>
-              <component id="be287" class="javax.swing.JButton" binding="DocenteResponsabile">
+              <component id="be287" class="javax.swing.JButton" binding="docenteresponsabile">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -64,7 +64,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="e3eba" class="javax.swing.JTextField" binding="Email">
+              <component id="e3eba" class="javax.swing.JTextField" binding="email">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -75,7 +75,7 @@
                   <text value="Email"/>
                 </properties>
               </component>
-              <component id="196d3" class="javax.swing.JButton" binding="Accedi">
+              <component id="196d3" class="javax.swing.JButton" binding="accedi">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -94,7 +94,7 @@
                   <text value="Password"/>
                 </properties>
               </component>
-              <component id="6986a" class="javax.swing.JButton" binding="Indietro">
+              <component id="6986a" class="javax.swing.JButton" binding="indietro">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -102,7 +102,7 @@
                   <text value="Indietro"/>
                 </properties>
               </component>
-              <component id="f446e" class="javax.swing.JTextField" binding="CodiceResponsabile">
+              <component id="f446e" class="javax.swing.JTextField" binding="codiceresponsabile">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
