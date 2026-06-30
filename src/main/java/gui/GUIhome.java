@@ -8,6 +8,11 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Finestra principale dell'applicazione.
+ * Permette all'utente di scegliere il tipo di accesso, inserire le credenziali
+ * e passare alla schermata di login per studente, docente o docente responsabile.
+ */
 public class GUIhome extends JFrame {
     private JPanel panel1;
     private JPanel mainPanel;
@@ -31,6 +36,11 @@ public class GUIhome extends JFrame {
     private JButton docenteresponsabile;
     private JTextField codiceresponsabile;
 
+    /**
+     * Crea la finestra home dell'applicazione.
+     * Inizializza i componenti grafici, imposta il pannello principale
+     * e configura le proprietà di base della finestra.
+     */
     public GUIhome() {
         $$$setupUI$$$();
         setTitle("Portale Universitario");
@@ -41,6 +51,11 @@ public class GUIhome extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Mostra una specifica schermata del pannello principale tramite {@link CardLayout}.
+     *
+     * @param nomeCard nome della schermata da visualizzare
+     */
     public void mostraSchermata(String nomeCard) {
         CardLayout cl = (CardLayout) mainPanel.getLayout();
         cl.show(mainPanel, nomeCard);
@@ -48,40 +63,87 @@ public class GUIhome extends JFrame {
         mainPanel.repaint();
     }
 
+    /**
+     * Collega un listener al pulsante di login docente.
+     *
+     * @param l listener da associare al pulsante docente
+     */
     public void addDocenteListener(ActionListener l) {
         docente.addActionListener(l);
     }
 
+    /**
+     * Collega un listener al pulsante di login studente.
+     *
+     * @param l listener da associare al pulsante studente
+     */
     public void addStudenteListener(ActionListener l) {
         studente.addActionListener(l);
     }
 
+    /**
+     * Collega un listener al pulsante di accesso.
+     *
+     * @param listener listener da associare al pulsante "Accedi"
+     */
     public void addAccediListener(ActionListener listener) {
         accedi.addActionListener(listener);
     }
 
+    /**
+     * Collega un listener al pulsante per tornare alla schermata precedente.
+     *
+     * @param listener listener da associare al pulsante "Indietro"
+     */
     public void addIndietroListener(ActionListener listener) {
         indietro.addActionListener(listener);
     }
 
+    /**
+     * Collega un listener al pulsante di login del docente responsabile.
+     *
+     * @param listener listener da associare al pulsante docente responsabile
+     */
     public void addDocenteResponsabileListener(ActionListener listener) {
         docenteresponsabile.addActionListener(listener);
     }
 
+    /**
+     * Restituisce il codice inserito per l'accesso come docente responsabile.
+     *
+     * @return codice inserito, senza spazi iniziali o finali
+     */
     public String getCodiceInput() {
         return codiceresponsabile.getText().trim();
     }
 
+    /**
+     * Imposta la visibilità del campo codice responsabile.
+     * Il campo viene mostrato solo quando l'utente sceglie l'accesso
+     * come docente responsabile.
+     *
+     * @param visibile true per mostrare il campo, false per nasconderlo
+     */
     public void impostaVisibilitaCodice(boolean visibile) {
         codiceresponsabile.setVisible(visibile);
         codiceresponsabile.revalidate();
         codiceresponsabile.repaint();
     }
 
+    /**
+     * Restituisce l'email inserita nella schermata di login.
+     *
+     * @return email inserita dall'utente
+     */
     public String getEmailInput() {
         return email.getText();
     }
 
+    /**
+     * Restituisce la password inserita nella schermata di login.
+     *
+     * @return password inserita dall'utente
+     */
     public String getPasswordInput() {
         return password.getText();
     }
@@ -92,7 +154,8 @@ public class GUIhome extends JFrame {
      * DO NOT edit this method OR call it in your code!
      *
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
         panel1.setLayout(new CardLayout(0, 0));
@@ -137,9 +200,9 @@ public class GUIhome extends JFrame {
 
     /*
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
-
 }

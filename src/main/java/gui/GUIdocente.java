@@ -2,11 +2,17 @@ package gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
+/**
+ * Finestra Swing che rappresenta l'area riservata del docente.
+ * Permette al docente di visualizzare il proprio orario, aprire il pannello
+ * per richiedere lo spostamento di una lezione ed effettuare il logout.
+ */
 public class GUIdocente extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel mainPanel;
@@ -18,6 +24,13 @@ public class GUIdocente extends JFrame {
     private JPanel pannelloContenitore;
     private static final Logger LOGGER = Logger.getLogger(GUIdocente.class.getName());
 
+    /**
+     * Crea la finestra dell'area riservata del docente.
+     * Inizializza i componenti grafici, configura il contenitore a schede
+     * e mostra un messaggio di benvenuto personalizzato.
+     *
+     * @param cognomeDocente cognome del docente autenticato
+     */
     public GUIdocente(String cognomeDocente) {
         $$$setupUI$$$();
         setTitle("Area Riservata Docente");
@@ -31,6 +44,11 @@ public class GUIdocente extends JFrame {
         inizializzaDati(cognomeDocente);
     }
 
+    /**
+     * Imposta il messaggio di benvenuto del docente.
+     *
+     * @param cognomeDocente cognome del docente autenticato
+     */
     private void inizializzaDati(String cognomeDocente) {
         if (messaggioDocente != null) {
             messaggioDocente.setText("Benvenuto nel portale docenti, Prof. " + cognomeDocente + "!");
@@ -39,35 +57,63 @@ public class GUIdocente extends JFrame {
         }
     }
 
+    /**
+     * Mostra il pannello dedicato alla richiesta di spostamento lezione.
+     * Il nuovo pannello viene aggiunto al contenitore principale e visualizzato
+     * tramite {@link CardLayout}.
+     *
+     * @param nuovoPannello pannello da mostrare per la richiesta di spostamento
+     */
     public void mostraPannelloSpostamento(JPanel nuovoPannello) {
         try {
             pannelloContenitore.remove(nuovoPannello);
         } catch (IllegalArgumentException e) {
-            // Commento esplicativo richiesto da SonarQube
+            // Il pannello potrebbe non essere ancora presente nel contenitore.
         }
 
         pannelloContenitore.add(nuovoPannello, "FORM_SPOSTAMENTO");
         cardLayout.show(pannelloContenitore, "FORM_SPOSTAMENTO");
     }
 
+    /**
+     * Collega un listener al pulsante per visualizzare l'orario del docente.
+     * Il listener viene fornito dal controller.
+     *
+     * @param listener listener da associare al pulsante "Visualizza orario"
+     */
     public void addVisualizzaOrarioDocenteListener(ActionListener listener) {
         if (visualizzaOrarioDocente != null) {
             visualizzaOrarioDocente.addActionListener(listener);
         }
     }
 
+    /**
+     * Collega un listener al pulsante per richiedere lo spostamento di una lezione.
+     * Il listener viene fornito dal controller.
+     *
+     * @param listener listener da associare al pulsante "Richiesta spostamento lezione"
+     */
     public void addRichiestaSpostamentoLezioneListener(ActionListener listener) {
         if (richiestaSpostamentoLezione != null) {
             richiestaSpostamentoLezione.addActionListener(listener);
         }
     }
 
+    /**
+     * Collega un listener al pulsante di logout.
+     * Il listener viene fornito dal controller.
+     *
+     * @param listener listener da associare al pulsante "Logout"
+     */
     public void addLogoutListener(ActionListener listener) {
         if (logout != null) {
             logout.addActionListener(listener);
         }
     }
 
+    /**
+     * Torna alla schermata iniziale dell'area docente.
+     */
     public void mostraPannelloIniziale() {
         cardLayout.show(pannelloContenitore, "DASHBOARD_INIZIALE");
     }
@@ -99,11 +145,9 @@ public class GUIdocente extends JFrame {
 
     /*
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
 }
-
-//@SuppressWarnings("java:S100")

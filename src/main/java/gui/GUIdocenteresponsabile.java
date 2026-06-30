@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
+/**
+ * Finestra Swing che rappresenta l'area riservata del docente responsabile.
+ * Permette al responsabile degli orari di visualizzare le richieste di
+ * spostamento delle lezioni e di effettuare il logout.
+ */
 public class GUIdocenteresponsabile extends JFrame {
     private JPanel mainPanel;
     private JButton visualizzarichieste;
@@ -15,6 +20,13 @@ public class GUIdocenteresponsabile extends JFrame {
     private JLabel titolo;
     private static final Logger LOGGER = Logger.getLogger(GUIdocenteresponsabile.class.getName());
 
+    /**
+     * Crea la finestra dell'area riservata del docente responsabile.
+     * Inizializza i componenti grafici e mostra un messaggio di benvenuto
+     * personalizzato con il cognome del docente.
+     *
+     * @param cognomeDocente cognome del docente responsabile autenticato
+     */
     public GUIdocenteresponsabile(String cognomeDocente) {
         $$$setupUI$$$();
         setTitle("Area Docente Responsabile");
@@ -27,6 +39,14 @@ public class GUIdocenteresponsabile extends JFrame {
         }
     }
 
+    /**
+     * Collega un listener al pulsante per visualizzare le richieste
+     * di spostamento lezione.
+     * Il listener viene fornito dal controller per gestire l'azione
+     * del responsabile.
+     *
+     * @param listener listener da associare al pulsante "Visualizza richieste"
+     */
     public void addVisualizzaRichiesteListener(ActionListener listener) {
         if (visualizzarichieste != null) {
             visualizzarichieste.addActionListener(listener);
@@ -35,6 +55,13 @@ public class GUIdocenteresponsabile extends JFrame {
         }
     }
 
+    /**
+     * Collega un listener al pulsante di logout.
+     * Il listener viene fornito dal controller per gestire l'uscita
+     * dall'area riservata.
+     *
+     * @param listener listener da associare al pulsante "Logout"
+     */
     public void addLogoutListener(ActionListener listener) {
         if (logout != null) {
             logout.addActionListener(listener);
@@ -47,7 +74,8 @@ public class GUIdocenteresponsabile extends JFrame {
      * DO NOT edit this method OR call it in your code!
      *
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -65,9 +93,9 @@ public class GUIdocenteresponsabile extends JFrame {
 
     /*
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
 }

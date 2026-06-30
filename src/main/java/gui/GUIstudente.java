@@ -8,7 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
-
+/**
+ * Finestra Swing che rappresenta l'area riservata dello studente.
+ * Permette allo studente di accedere alla visualizzazione dell'orario
+ * del proprio anno di corso o di tornare alla schermata precedente.
+ */
 public class GUIstudente extends JFrame {
     private JPanel mainPanel;
     private JLabel messaggio;
@@ -16,6 +20,13 @@ public class GUIstudente extends JFrame {
     private JButton indietro;
     private static final Logger LOGGER = Logger.getLogger(GUIstudente.class.getName());
 
+    /**
+     * Crea la finestra dell'area riservata dello studente.
+     * Inizializza i componenti grafici e mostra un messaggio di benvenuto
+     * personalizzato con il nome dello studente.
+     *
+     * @param nomeStudente nome dello studente autenticato
+     */
     public GUIstudente(String nomeStudente) {
         $$$setupUI$$$();
         setTitle("Area Riservata Studente");
@@ -26,6 +37,12 @@ public class GUIstudente extends JFrame {
         messaggio.setText("Benvenuto nella tua area riservata, " + nomeStudente + "!");
     }
 
+    /**
+     * Collega un listener al pulsante per la visualizzazione dell'orario.
+     * Il listener viene fornito dal controller per gestire l'azione dell'utente.
+     *
+     * @param listener listener da associare al pulsante "Visualizza orario"
+     */
     public void addVisualizzaOrarioListener(ActionListener listener) {
         if (visualizzaorario != null) {
             visualizzaorario.addActionListener(listener);
@@ -34,6 +51,12 @@ public class GUIstudente extends JFrame {
         }
     }
 
+    /**
+     * Collega un listener al pulsante per tornare alla schermata precedente.
+     * Il listener viene fornito dal controller per gestire la navigazione.
+     *
+     * @param listener listener da associare al pulsante "Indietro"
+     */
     public void addIndietroListener(ActionListener listener) {
         if (indietro != null) {
             indietro.addActionListener(listener);
@@ -48,7 +71,8 @@ public class GUIstudente extends JFrame {
      * DO NOT edit this method OR call it in your code!
      *
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -65,9 +89,9 @@ public class GUIstudente extends JFrame {
 
     /*
      * @noinspection ALL
-     */@SuppressWarnings("java:S100")
+     */
+    @SuppressWarnings("java:S100")
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
 }
