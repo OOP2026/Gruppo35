@@ -12,7 +12,7 @@ import model.Docente;
 import model.Studente;
 import model.RichiestaSpostamento;
 import gui.GUIhome;
-
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
@@ -195,38 +195,48 @@ public class Controller {
 		private final GUIdocente dashboard;
 		private final Docente docenteLoggato;
 
-		/**
-		 * Crea il listener per la richiesta di spostamento lezione.
-		 *
-		 * @param dashboard dashboard del docente attualmente visualizzata
-		 * @param docente docente che ha effettuato il login
-		 */
 		public RichiestaSpostamentoLezioneListener(GUIdocente dashboard, Docente docente) {
 			this.dashboard = dashboard;
 			this.docenteLoggato = docente;
 		}
 
-		/**
-		 * Mostra il pannello per l'inserimento della richiesta e registra
-		 * la richiesta nello stato iniziale se i dati inseriti sono validi.
-		 *
-		 * @param e evento generato dal pulsante della GUI
-		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			GUIrichiestaspostamentolezione formView = new GUIrichiestaspostamentolezione();
 
 			formView.addInviaListener(ev -> {
 				try {
-					String giornoInserito = formView.getDataInput();
-					LocalTime inizioInserito = LocalTime.parse(formView.getOraInizioInput());
-					RichiestaSpostamento nuovaRichiesta = getRichiestaSpostamento(formView, giornoInserito, inizioInserito);
+					String dataInput = formView.getDataInput().trim();
+					String[] dataParts = dataInput.split("-");
+					if (dataParts.length != 3) throw new Exception("Formato data errato! Usa AAAA-MM-GG.");
+
+					int mese = Integer.parseInt(dataParts[1]);
+					int giorno = Integer.parseInt(dataParts[2]);
+					if (mese < 1 || mese > 12) throw new Exception("Il mese deve essere compreso tra 01 e 12.");
+					if (giorno < 1 || giorno > 31) throw new Exception("Il giorno deve essere compreso tra 01 e 31.");
+
+					LocalTime inizio = LocalTime.parse(formView.getOraInizioInput().trim());
+					LocalTime fine = LocalTime.parse(formView.getOraFineInput().trim());
+					if (!inizio.isBefore(fine)) {
+						throw new Exception("L'orario di inizio deve essere precedente all'orario di fine!");
+					}
+
+					String materia = formView.getMateriaInput();
+					if (materia == null || materia.isEmpty()) throw new Exception("Seleziona una materia.");
+
+					// Costruzione richiesta
+					RichiestaSpostamento nuovaRichiesta = getRichiestaSpostamento(formView, dataInput, inizio, fine, materia);
 					richiesteSpostamento.add(nuovaRichiesta);
 
-					JOptionPane.showMessageDialog(dashboard, "Richiesta registrata in stato: IN ATTESA!");
+					JOptionPane.showMessageDialog(dashboard, "Richiesta per '" + materia + "' registrata in stato: IN ATTESA!");
 					dashboard.mostraPannelloIniziale();
+
+				} catch (DateTimeParseException ex) {
+					JOptionPane.showMessageDialog(dashboard, "Formato orario errato! Usa HH:MM.", "Errore Orario", JOptionPane.ERROR_MESSAGE);
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(dashboard, "Data non valida, usa solo numeri per anno/mese/giorno.", "Errore Formato", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(dashboard, "Formato dati non valido! Controlla i campi (HH:MM).", "Errore", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(dashboard, ex.getMessage(), "Errore di Validazione", JOptionPane.ERROR_MESSAGE);
 				}
 			});
 
@@ -234,34 +244,14 @@ public class Controller {
 			dashboard.mostraPannelloSpostamento(formView);
 		}
 
-		/**
-		 * Crea una richiesta di spostamento a partire dai dati inseriti nel form.
-		 * In questa versione viene costruita una lezione simulata per collegare
-		 * la richiesta a un oggetto del model.
-		 *
-		 * @param formView form contenente i dati inseriti dal docente
-		 * @param giornoInserito giorno proposto per lo spostamento
-		 * @param inizioInserito ora di inizio proposta
-		 * @return richiesta di spostamento costruita con i dati forniti
-		 */
-		private RichiestaSpostamento getRichiestaSpostamento(GUIrichiestaspostamentolezione formView, String giornoInserito, LocalTime inizioInserito) {
-			LocalTime fineInserito = LocalTime.parse(formView.getOraFineInput());
+		private RichiestaSpostamento getRichiestaSpostamento(GUIrichiestaspostamentolezione formView, String giorno, LocalTime inizio, LocalTime fine, String materia) {
 			model.Aula aulaTest = new model.Aula("Aula 1");
-			model.Insegnamento insegnamentoTest = new model.Insegnamento("Basi di dati", 6, "I", docenteLoggato);
-			model.Lezione lezioneSimulata = new model.Lezione(
-					giornoInserito,
-					inizioInserito,
-					fineInserito,
-					insegnamentoTest,
-					aulaTest
-			);
 
-			return new RichiestaSpostamento(
-					lezioneSimulata,
-					giornoInserito,
-					inizioInserito,
-					fineInserito
-			);
+			model.Insegnamento insegnamentoTest = new model.Insegnamento(materia, 6, "I", docenteLoggato);
+
+			model.Lezione lezioneSimulata = new model.Lezione(giorno, inizio, fine, insegnamentoTest, aulaTest);
+
+			return new RichiestaSpostamento(lezioneSimulata, giorno, inizio, fine);
 		}
 	}
 
