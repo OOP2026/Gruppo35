@@ -35,6 +35,7 @@ public class GUIhome extends JFrame {
     private JButton indietro;
     private JButton docenteresponsabile;
     private JTextField codiceresponsabile;
+    private JPanel pannelloCodice;
 
     /**
      * Crea la finestra home dell'applicazione.
@@ -62,6 +63,7 @@ public class GUIhome extends JFrame {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
+
 
     /**
      * Collega un listener al pulsante di login docente.
@@ -125,9 +127,9 @@ public class GUIhome extends JFrame {
      * @param visibile true per mostrare il campo, false per nasconderlo
      */
     public void impostaVisibilitaCodice(boolean visibile) {
-        codiceresponsabile.setVisible(visibile);
-        codiceresponsabile.revalidate();
-        codiceresponsabile.repaint();
+        pannelloCodice.setVisible(visibile);
+        this.revalidate();
+        this.repaint();
     }
 
     /**
@@ -178,23 +180,33 @@ public class GUIhome extends JFrame {
         home.setText("HOME");
         panelBottoni.add(home, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panelLogin = new JPanel();
-        panelLogin.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panelLogin.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panelLogin, "SchermataLogin");
         email = new JTextField();
-        email.setText("Email");
-        panelLogin.add(email, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
-        password = new JTextField();
-        password.setText("Password");
-        panelLogin.add(password, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        email.setText("");
+        panelLogin.add(email, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
         indietro = new JButton();
         indietro.setText("Indietro");
-        panelLogin.add(indietro, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        codiceresponsabile = new JTextField();
-        codiceresponsabile.setText("Codice");
-        panelLogin.add(codiceresponsabile, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        panelLogin.add(indietro, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         accedi = new JButton();
         accedi.setText("Accedi");
-        panelLogin.add(accedi, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panelLogin.add(accedi, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        password = new JPasswordField();
+        panelLogin.add(password, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setText("Email:");
+        panelLogin.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setText("Password:");
+        panelLogin.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        pannelloCodice = new JPanel();
+        pannelloCodice.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panelLogin.add(pannelloCodice, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, true));
+        final JLabel label3 = new JLabel();
+        label3.setText("Codice:");
+        pannelloCodice.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        codiceresponsabile = new JPasswordField();
+        pannelloCodice.add(codiceresponsabile, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), new Dimension(200, 30), 0, false));
     }
 
     /**
@@ -204,4 +216,7 @@ public class GUIhome extends JFrame {
         return panel1;
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }

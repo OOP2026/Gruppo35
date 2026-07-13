@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Rappresenta un vincolo orario indicato da un docente.
@@ -77,5 +79,14 @@ public class VincoloDocente {
      */
     public void setOraFine(LocalTime oraFine) {
         this.oraFine = oraFine;
+    }
+
+    private List<VincoloDocente> vincoli = new ArrayList<>();
+
+    public void aggiungiVincolo(VincoloDocente v) throws Exception {
+        if (vincoli.size() >= 3) {
+            throw new Exception("Limite massimo di 3 vincoli raggiunto!");
+        }
+        vincoli.add(v);
     }
 }

@@ -2,22 +2,20 @@ package controller;
 
 import dao.DocenteDAO;
 import dao.StudenteDAO;
+import gui.*;
 import implementazionedao.DocentePostgresDAO;
 import implementazionedao.StudentePostgresDAO;
-import gui.GUIdocente;
-import gui.GUIdocenteresponsabile;
-import gui.GUIstudente;
-import gui.GUIrichiestaspostamentolezione;
 import model.Docente;
 import model.Studente;
 import model.RichiestaSpostamento;
-import gui.GUIhome;
+
 import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.VincoloDocente;
 
 /**
  * Classe centrale del modulo controller.
@@ -37,6 +35,7 @@ public class Controller {
 	private static final String SCHERMATA_LOGIN = "SCHERMATA_LOGIN";
 	private static final String SCHERMATA_BOTTONI = "SchermataBottoni";
 	private final ArrayList<RichiestaSpostamento> richiesteSpostamento = new ArrayList<>();
+	private Docente docenteLoggato;
 
 	/**
 	 * Crea un nuovo controller associato alla finestra home dell'applicazione.
@@ -114,6 +113,8 @@ public class Controller {
 	 * e apre la dashboard corrispondente.
 	 */
 	private class AccediListener implements ActionListener {
+		private Docente docenteLoggato;
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String emailInserita = gui.getEmailInput().trim();
@@ -124,6 +125,7 @@ public class Controller {
 				case "DOCENTE":
 					Docente d = docenteDAO.loginDocente(emailInserita, passwordInserita);
 					if (d != null) {
+						this.docenteLoggato = d;
 						loginSuccesso = true;
 						JOptionPane.showMessageDialog(gui, "Benvenuto Prof. " + d.getCognome() + "!", "Login Riuscito", JOptionPane.INFORMATION_MESSAGE);
 						gui.dispose();
@@ -135,6 +137,16 @@ public class Controller {
 							dashboardDocente.dispose();
 							gui.mostraSchermata(SCHERMATA_BOTTONI);
 							gui.setVisible(true);
+						});
+						dashboardDocente.addInserisciVincoliListener(f -> {
+							DialogVincoli dialog = new DialogVincoli(dashboardDocente);
+							dialog.addSalvaListener(new AggiungiVincoloListener(dialog, d));
+							dialog.addAnnullaListener(ev -> dialog.dispose());
+							dialog.setVisible(true);
+						});
+						dashboardDocente.addVisualizzaVincoliListener(g -> {
+							String testo = formattaVincoli(d); // 'd' è il docente loggato
+							JOptionPane.showMessageDialog(dashboardDocente, testo, "I tuoi Vincoli", JOptionPane.INFORMATION_MESSAGE);
 						});
 						dashboardDocente.setVisible(true);
 					}
@@ -184,6 +196,7 @@ public class Controller {
 			if (!loginSuccesso) {
 				JOptionPane.showMessageDialog(gui, "Dati errati per la sezione " + tipoUtenteCorrente.toLowerCase() + ".", "Errore di Autenticazione", JOptionPane.ERROR_MESSAGE);
 			}
+
 		}
 	}
 
@@ -199,6 +212,7 @@ public class Controller {
 			this.dashboard = dashboard;
 			this.docenteLoggato = docente;
 		}
+
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -336,5 +350,88 @@ public class Controller {
 
 			JOptionPane.showMessageDialog(null, orarioStatico, "Orario Lezioni", JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+
+	private class InserisciVincoliListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			DialogVincoli dialog = new DialogVincoli(null); // Crea la finestra
+
+			dialog.addSalvaListener(ev -> {
+				try {
+					String giorno = (String) dialog.getGiornoComboBox().getSelectedItem();
+					LocalTime inizio = LocalTime.parse(dialog.getOraInizioInput().trim());
+					LocalTime fine = LocalTime.parse(dialog.getOraFineInput().trim());
+
+					if (docenteLoggato.getVincoli().size() >= 3) {
+						throw new Exception("Hai già raggiunto il limite di 3 vincoli.");
+					}
+
+					VincoloDocente nuovo = new VincoloDocente(giorno, inizio, fine);
+					docenteLoggato.aggiungiVincolo(nuovo);
+
+					JOptionPane.showMessageDialog(dialog, "Vincolo aggiunto!");
+					dialog.dispose();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(dialog, "Errore: " + ex.getMessage());
+				}
+			});
+
+			dialog.setVisible(true);
+		}
+	}
+
+	private class AggiungiVincoloListener implements ActionListener {
+		private final DialogVincoli dialog;
+		private final Docente docente;
+
+		public AggiungiVincoloListener(DialogVincoli dialog, Docente docente) {
+			this.dialog = dialog;
+			this.docente = docente;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				String giorno = (String) dialog.getGiornoComboBox().getSelectedItem();
+
+				String oraInizioStringa = dialog.getOraInizioInput().trim();
+				if (oraInizioStringa.length() == 4) oraInizioStringa = "0" + oraInizioStringa;
+				LocalTime inizio = LocalTime.parse(oraInizioStringa);
+
+				String oraFineStringa = dialog.getOraFineInput().trim();
+				if (oraFineStringa.length() == 4) oraFineStringa = "0" + oraFineStringa;
+				LocalTime fine = LocalTime.parse(oraFineStringa);
+
+				if (!inizio.isBefore(fine)) {
+					throw new Exception("L'orario di inizio deve essere precedente a quello di fine.");
+				}
+
+				if (docente.getVincoli().size() >= 3) {
+					throw new Exception("Hai già raggiunto il limite massimo di 3 vincoli.");
+				}
+
+				VincoloDocente nuovo = new VincoloDocente(giorno, inizio, fine);
+				docente.aggiungiVincolo(nuovo);
+
+				JOptionPane.showMessageDialog(dialog, "Vincolo aggiunto con successo!");
+				dialog.dispose();
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(dialog, "Errore: " + ex.getMessage());
+			}
+		}
+	}
+	private String formattaVincoli(Docente docente) {
+		if (docente.getVincoli().isEmpty()) {
+			return "Nessun vincolo inserito.";
+		}
+		StringBuilder sb = new StringBuilder("<html><h3><b>I tuoi Vincoli:</b></h3><ul>");
+		for (VincoloDocente v : docente.getVincoli()) {
+			sb.append("<li>").append(v.getGiorno()).append(": ")
+					.append(v.getOraInizio()).append(" - ").append(v.getOraFine())
+					.append("</li>");
+		}
+		sb.append("</ul></html>");
+		return sb.toString();
 	}
 }
